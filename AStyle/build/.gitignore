@@ -2,4 +2,4 @@ bin
 debug
 obj
 release
-AStyle.VC.db
+AStyle.VC.*
