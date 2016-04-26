@@ -315,8 +315,10 @@ void ASResource::buildIndentableMacros(vector<const pair<const string, const str
 		macro_pair("BEGIN_DISPATCH_MAP", "END_DISPATCH_MAP"),
 		macro_pair("BEGIN_EVENT_MAP", "END_EVENT_MAP"),
 		macro_pair("BEGIN_MESSAGE_MAP", "END_MESSAGE_MAP"),
-		macro_pair("BEGIN_PROPPAGEIDS", "END_PROPPAGEIDS"),
-	};
+        macro_pair("BEGIN_PROPPAGEIDS", "END_PROPPAGEIDS"),
+        // XmlParser
+        macro_pair("DECLARE_XML_ELEMENT", "END_XML_ELEMENT"),
+    };
 
 	size_t elements = sizeof(macros) / sizeof(macros[0]);
 	for (size_t i = 0; i < elements; i++)
