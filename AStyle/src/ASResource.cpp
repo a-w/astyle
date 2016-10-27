@@ -318,6 +318,8 @@ void ASResource::buildIndentableMacros(vector<const pair<const string, const str
         macro_pair("BEGIN_PROPPAGEIDS", "END_PROPPAGEIDS"),
         // XmlParser
         macro_pair("DECLARE_XML_ELEMENT", "END_XML_ELEMENT"),
+        // Property Bag
+        macro_pair("DECLARE_PROPERTY_BAG", "END_PROPERTY_BAG"),
     };
 
 	size_t elements = sizeof(macros) / sizeof(macros[0]);
