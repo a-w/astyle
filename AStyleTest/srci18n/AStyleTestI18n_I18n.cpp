@@ -1,6 +1,6 @@
 // AStyleTestI18n_I18n.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 //
 //  File encoding for this file is UTF-8 WITH a byte order mark (BOM).
@@ -56,17 +56,17 @@ string convertToMultiByte(const wstring& wideStr)
 // convert wchar_t to a multibyte string using the currently assigned locale
 {
 	// get length of the output excluding the NULL and validate the parameters
-	size_t mbLen = wcstombs(NULL, wideStr.c_str(), 0);
+	size_t mbLen = wcstombs(nullptr, wideStr.c_str(), 0);
 	if (mbLen == string::npos)
 		systemAbort("Bad char in wide character string");
 	// convert the characters
-	char* mbStr = new(nothrow) char[mbLen + 1];
-	if (mbStr == NULL)
+	char* mbStr = new (nothrow) char[mbLen + 1];
+	if (mbStr == nullptr)
 		systemAbort("Bad memory alloc for multi-byte string");
 	wcstombs(mbStr, wideStr.c_str(), mbLen + 1);
 	// return the string
 	string returnStr = mbStr;
-	delete [] mbStr;
+	delete[] mbStr;
 	return returnStr;
 }
 
@@ -87,7 +87,7 @@ bool setGlobalLocale(const string& localeName)
 {
 	g_isI18nTest = true;	// this is the i18n test module
 	char* locName = setlocale(LC_ALL, localeName.c_str());
-	if (locName == NULL)
+	if (locName == nullptr)
 		return false;
 	return true;
 }
@@ -209,7 +209,7 @@ TEST_F(JapaneseF, Recursive1)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// run the test
@@ -231,7 +231,7 @@ TEST_F(JapaneseF, Recursive2)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// erase the entries that are not in the path
@@ -262,7 +262,7 @@ TEST_F(JapaneseF, Recursive3)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// write the multi-byte filename and extension
@@ -270,7 +270,7 @@ TEST_F(JapaneseF, Recursive3)
 	// fileExt   = L"/\u30db\u30de";
 	string fileNameJ = convertToMultiByte(L"/ツテヌネ");
 	string fileExtJ  = convertToMultiByte(L".ホマ");
-	string testFilePath = getTestDirectory() + subdir1  + fileNameJ + fileExtJ;
+	string testFilePath = getTestDirectory() + subdir1 + fileNameJ + fileExtJ;
 	g_console->standardizePath(testFilePath);
 	createTestFile(testFilePath, textOut);
 	// run the test
@@ -290,7 +290,7 @@ TEST_F(JapaneseF, RecursiveExclude)
 	// check valid locale
 	if (!isValidLocale)
 		return;
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// build the excludeVector
@@ -334,7 +334,7 @@ TEST_F(JapaneseF, RecursiveSuffix)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);			// change this to see results
 	g_console->setIsRecursive(true);
 	// build the optionsVector
@@ -452,7 +452,7 @@ TEST_F(GreekF, Recursive1)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// run the test
@@ -479,7 +479,7 @@ TEST_F(GreekF, Recursive2)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// delete the entries that are not in the path
@@ -510,13 +510,13 @@ TEST_F(GreekF, Recursive3)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// write the single-byte filename and extension
 	string fileNameR = convertToMultiByte(L"/ΠΖΣΧ");
 	string fileExtR  = convertToMultiByte(L".μςφ");
-	string testFilePath = getTestDirectory() + subdir1  + fileNameR + fileExtR;
+	string testFilePath = getTestDirectory() + subdir1 + fileNameR + fileExtR;
 	g_console->standardizePath(testFilePath);
 	createTestFile(testFilePath, textOut);
 	// run the test
@@ -536,7 +536,7 @@ TEST_F(GreekF, RecursiveExclude)
 	// check valid locale
 	if (!isValidLocale)
 		return;
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// build the excludeVector
@@ -585,7 +585,7 @@ TEST_F(GreekF, RecursiveSuffix)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);			// change this to see results
 	g_console->setIsRecursive(true);
 	// build the optionsVector
@@ -695,7 +695,7 @@ struct RussianF : public Test
 	}
 };
 
-// OSX fails on the string compares, which actually are OK.
+// MacOS fails on the string compares, which actually are OK.
 #ifdef __APPLE__
 	TEST_F(RussianF, DISABLED_Recursive1)
 #else
@@ -707,7 +707,7 @@ struct RussianF : public Test
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// run the test
@@ -726,7 +726,7 @@ struct RussianF : public Test
 	}
 }
 
-// OSX fails on the string compares, which actually are OK.
+// MacOS fails on the string compares, which actually are OK.
 #ifdef __APPLE__
 	TEST_F(RussianF, DISABLED_Recursive2)
 #else
@@ -738,7 +738,7 @@ struct RussianF : public Test
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// delete the entries that are not in the path
@@ -773,13 +773,13 @@ TEST_F(RussianF, Recursive3)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// write the single-byte filename and extension
 	string fileNameR = convertToMultiByte(L"/ЧШЪЫ");
 	string fileExtR  = convertToMultiByte(L".ЭЮЯ");
-	string testFilePath = getTestDirectory() + subdir1  + fileNameR + fileExtR;
+	string testFilePath = getTestDirectory() + subdir1 + fileNameR + fileExtR;
 	g_console->standardizePath(testFilePath);
 	createTestFile(testFilePath, textOut);
 	// run the test
@@ -793,8 +793,8 @@ TEST_F(RussianF, Recursive3)
 	EXPECT_EQ(testFilePath, fileName[0]);
 }
 
-// OSX iconv cannot do iconv_open for "UTF−16" or "UTF−8".
-// It aborts in the function Utf8ToUtf16().
+// MacOS iconv cannot do iconv_open for "UTF−16" or "UTF−8".
+// It aborts in the function utf8ToUtf16().
 #ifdef __APPLE__
 	TEST_F(RussianF, DISABLED_RecursiveExclude)
 #else
@@ -805,7 +805,7 @@ TEST_F(RussianF, Recursive3)
 	// check valid locale
 	if (!isValidLocale)
 		return;
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// build the excludeVector
@@ -849,7 +849,7 @@ TEST_F(RussianF, RecursiveSuffix)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);			// change this to see results
 	g_console->setIsRecursive(true);
 	// build the optionsVector
@@ -919,8 +919,8 @@ struct MultiLanguageF : public Test
 		// create fileNames vector
 		string testdir =  getTestDirectory();
 		fileNames.push_back(testdir + "/recursive1.cpp");
-		fileNames.push_back(testdir + subdir1  + "/recursive2.cpp");
-		fileNames.push_back(testdir + subdir1  + "/recursive3.cpp");
+		fileNames.push_back(testdir + subdir1 + "/recursive2.cpp");
+		fileNames.push_back(testdir + subdir1 + "/recursive3.cpp");
 		// write the Japanese test files
 		for (size_t i = 0; i < fileNames.size(); i++)
 		{
@@ -934,9 +934,9 @@ struct MultiLanguageF : public Test
 		g_console->standardizePath(russianPath);
 		createTestDirectory(russianPath);
 		// files are created for Linux only
-		fileNames.push_back(russianPath  + "/recursive4.cpp");
+		fileNames.push_back(russianPath + "/recursive4.cpp");
 		createTestFile(fileNames.back(), textOut);
-		fileNames.push_back(russianPath  + "/recursive5.cpp");
+		fileNames.push_back(russianPath + "/recursive5.cpp");
 		createTestFile(fileNames.back(), textOut);
 		// sort test strings for alpha compare
 		sort(fileNames.begin(), fileNames.end());
@@ -956,7 +956,7 @@ TEST_F(MultiLanguageF, Recursive1)
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	assert(g_console != NULL);
+	assert(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// run the test
@@ -994,10 +994,10 @@ struct Codepage1252F : public Test
 		// get buffer for codepageRecursive1
 		int bufSize = GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
 		                            LOCALE_IDEFAULTANSICODEPAGE,
-		                            NULL,
+		                            nullptr,
 		                            0);
-		char* value = new(nothrow) char[bufSize];
-		if (value == NULL)
+		char* value = new (nothrow) char[bufSize];
+		if (value == nullptr)
 			systemAbort("Bad memory alloc for GetLocaleInfo in Codepage1252F");
 		// get codepage
 		GetLocaleInfo(LOCALE_SYSTEM_DEFAULT,
@@ -1005,7 +1005,7 @@ struct Codepage1252F : public Test
 		              value,
 		              sizeof(value) / sizeof(char));
 		int codepage = atoi(value);
-		delete [] value;
+		delete[] value;
 		if (codepage != 1252)
 		{
 			g_testedCodepage1252 = false;
@@ -1076,7 +1076,7 @@ struct Codepage1252F : public Test
 	}
 };
 
-// OSX fails on the string compares, which actually are OK.
+// MacOS fails on the string compares, which actually are OK.
 #ifdef __APPLE__
 	TEST_F(Codepage1252F, DISABLED_RecursiveMultiLanguage)
 #else
@@ -1088,7 +1088,7 @@ struct Codepage1252F : public Test
 	if (!isValidLocale)
 		return;
 	// set processing variables
-	ASSERT_TRUE(g_console != NULL);
+	ASSERT_TRUE(g_console != nullptr);
 	g_console->setIsQuiet(true);		// change this to see results
 	g_console->setIsRecursive(true);
 	// run the test
@@ -1230,7 +1230,7 @@ TEST_F(GetNumberFormat, GetNumberFormat)
 	// LINUX French locale
 	bool frOk = setGlobalLocale("fr_FR.UTF-8");
 	ASSERT_TRUE(frOk) << "Cannot set French locale";
-	// Mac OSX currently does not set this, grouping = CHAR_MAX (127)
+	// MacOS currently does not set this, grouping = CHAR_MAX (127)
 #ifdef __APPLE__
 	result = "123456789";
 #else
@@ -1244,7 +1244,7 @@ TEST_F(GetNumberFormat, GetNumberFormat)
 	// LINUX German locale
 	bool deOk = setGlobalLocale("de_DE.UTF-8");
 	ASSERT_TRUE(deOk) << "Cannot set German locale";
-	// Mac OSX currently does not set this, grouping = CHAR_MAX (127)
+	// MacOS currently does not set this, grouping = CHAR_MAX (127)
 #ifdef __APPLE__
 	result = "123456789";
 #else
@@ -1272,19 +1272,21 @@ TEST(Other, LanguageStrings)
 #ifdef _WIN32
 	const char* language[] =
 	{
+		"belgian",
+		"bulgarian",
 		"chinese",
 		"chinese-simplified",
 		"chinese-traditional",
 		"czech",
 		"danish",
 		"dutch",
-		"belgian",
 		"english",
 		"english-aus",          // don't use australian
 		"english-can",          // don't use canadian
 		"english-nz",
 		"english-uk",
 		"english-us",			// don't use anything else
+		"estonian",
 		"finnish",
 		"french",
 		"french-belgian",
@@ -1294,6 +1296,7 @@ TEST(Other, LanguageStrings)
 		"german-austrian",
 		"german-swiss",          // don't use swiss
 		"greek",
+		"hindi",
 		"hungarian",
 		"icelandic",
 		"italian",
@@ -1306,6 +1309,7 @@ TEST(Other, LanguageStrings)
 		"polish",
 		"portuguese",
 		"portuguese-brazilian",
+		"romanian",
 		"russian",
 		"slovak",
 		"spanish",
@@ -1313,6 +1317,7 @@ TEST(Other, LanguageStrings)
 		"spanish-modern",
 		"swedish",
 		"turkish",
+		"ukrainian",
 	};
 	// WINDOWS test language strings
 	size_t langSize = sizeof(language) / sizeof(language[0]);
@@ -1336,9 +1341,9 @@ TEST(Other, SetCLocale)
 {
 	// set the C locale to the classic locale
 	char* localeC = setlocale(LC_ALL, "C");
-	if (localeC == NULL)
+	if (localeC == nullptr)
 		FAIL() << "Bad return from setlocale";
-	ASSERT_STREQ("C", setlocale(LC_ALL, NULL)) << "Failed to set C locale";
+	ASSERT_STREQ("C", setlocale(LC_ALL, nullptr)) << "Failed to set C locale";
 	// set the C++ locale to the native locale
 	try
 	{
@@ -1363,7 +1368,7 @@ TEST(Other, CppImbue)
 // is imbue() supported by this compiler
 // NOTE: MinGW 4.5 fails this test
 // NOTE: Embarcadero 6.20 fails this test
-// NOTE: Mac OS X fails this test
+// NOTE: MacOS fails this test
 {
 	locale::global(locale("C"));
 	// test the formatting of "cout" for numbers

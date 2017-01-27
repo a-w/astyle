@@ -11,17 +11,18 @@
 				<Option object_output="objLoc/Debug/" />
 				<Option type="1" />
 				<Option compiler="icc" />
-				<Option parameters="--terse_output" />
+				<Option parameters="--terse_output  --gtest_print_time=0" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-w2" />
 					<Add option="-g" />
+					<Add option="-fno-exceptions" />
 					<Add option="-std=c++11" />
 					<Add option="-Wextra" />
 					<Add option="-DGTEST_USE_OWN_TR1_TUPLE=1" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add library="gmockd" />
@@ -33,9 +34,11 @@
 				<Option object_output="objLoc/Release/" />
 				<Option type="1" />
 				<Option compiler="icc" />
+				<Option parameters="--gtest_print_time=0" />
 				<Compiler>
 					<Add option="-Wall" />
 					<Add option="-w2" />
+					<Add option="-fno-exceptions" />
 					<Add option="-std=c++11" />
 					<Add option="-Wextra" />
 					<Add option="-wd11074,11076" />
@@ -43,7 +46,7 @@
 					<Add option="-DNDEBUG" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

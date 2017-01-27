@@ -7,19 +7,20 @@
 		<Option compiler="clang" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/libastyle-2.06jd.so" prefix_auto="0" extension_auto="0" />
-				<Option object_output="objJava/Debug/" />
+				<Option output="bin/libastyle-2.7jd.so" prefix_auto="0" extension_auto="0" />
+				<Option object_output="objJ/Debug/" />
 				<Option type="3" />
 				<Option compiler="clang" />
 				<Compiler>
 					<Add option="-Weverything" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add option="-Wextra" />
 					<Add option="-fno-rtti" />
 					<Add option="-fno-exceptions" />
 					<Add option="-fPIC" />
-					<Add option="-fvisibility=hidden" />
+					<Add option="-Wno-c++98-compat" />
 					<Add option="-Wno-exit-time-destructors" />
 					<Add option="-Wno-global-constructors" />
 					<Add option="-Wno-missing-variable-declarations" />
@@ -32,22 +33,24 @@
 					<Add option="-Wno-unknown-warning-option" />
 					<Add option="-DASTYLE_JNI" />
 					<Add directory="/usr/lib/jvm/default-java/include" />
+					<Add directory="/usr/lib/jvm/default-java/include/linux" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/libastyle-2.06j.so" prefix_auto="0" extension_auto="0" />
-				<Option object_output="objJava/Release/" />
+				<Option output="bin/libastyle-2.7j.so" prefix_auto="0" extension_auto="0" />
+				<Option object_output="objJ/Release/" />
 				<Option type="3" />
 				<Option compiler="clang" />
 				<Compiler>
 					<Add option="-O3" />
 					<Add option="-Weverything" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-Wextra" />
 					<Add option="-fno-rtti" />
 					<Add option="-fno-exceptions" />
 					<Add option="-fPIC" />
-					<Add option="-fvisibility=hidden" />
+					<Add option="-Wno-c++98-compat" />
 					<Add option="-Wno-exit-time-destructors" />
 					<Add option="-Wno-global-constructors" />
 					<Add option="-Wno-missing-variable-declarations" />
@@ -61,6 +64,7 @@
 					<Add option="-DASTYLE_JNI" />
 					<Add option="-DNDEBUG" />
 					<Add directory="/usr/lib/jvm/default-java/include" />
+					<Add directory="/usr/lib/jvm/default-java/include/linux" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

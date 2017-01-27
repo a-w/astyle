@@ -1,4 +1,4 @@
-﻿#! /usr/bin/python
+#! /usr/bin/python
 """ Library files for AStyle test modules.
     All directories and filepaths should be in this module.
     Executed as stand-alone it will run a series of tests.
@@ -40,17 +40,17 @@ OPT0 = ""
 # OPT1
 # align-pointer=type (k1), add-brackets (j), break-blocks=all (F),
 #     min-conditional-indent=0 (m0), pad-oper (p), pad-oparen (P)
-#     obj-c (xMxQxRxP1)
-OPT1 = "-CSKNLwxwxWYM50m0FpPHUEk1yejOocxMxQxRxP1"
+#     obj-c (xMxQxqxSxP1)
+OPT1 = "-CSKNLwxwxWYM50m0FpPHUEk1yexbjOocxMxQxqxSxP1"
 
 # OPT2
 # align-pointer=name (k3), align-reference=type (W1),
 #     add-one-line-brackets (J), break-blocks (f),
 #     min-conditional-indent=3 (m3), pad-paren-out(d)
 #     pad-oper (p), delete-empty-lines (xe)
-#     obj-c (xqxrxP2)
+#     obj-c (xMxRxrxsxP0)
 # WITHOUT: keep-one-line-blocks (O), keep-one-line-statements (o),
-OPT2 = "-xGSKNLwxWM60m3fpdHUxeEk3W1yeJcxqxrxP2"
+OPT2 = "-xGSKNLwxWM60m3fpdHUxeEk3W1yeJcxMxRxrxsxP0"
 
 # OPT3
 # align-pointer=middle (k2), align-reference=name (W3),
@@ -61,7 +61,7 @@ OPT2 = "-xGSKNLwxWM60m3fpdHUxeEk3W1yeJcxqxrxP2"
 #     indent-labels (L), indent-preproc-define (w),
 #     add-brackets (j,J), break-blocks (f,F),
 #     pad-oper (p), delete-empty-lines (xe)
-OPT3 = "-xwM80m1DHUEk2W3yxj"
+OPT3 = "-xwM80m1DyHUEk2W3xbxjxyxpxkxcxlxnxdxgxt2"
 
 # TEST SEPARATELY
 # max-code-length (xC), break-after-logical (xL)
@@ -71,8 +71,7 @@ OPT3 = "-xwM80m1DHUEk2W3yxj"
 DEBUG   = "debug"
 RELEASE = "release"
 STATIC  = "static"
-# STATIC_XP is currently not a valid configuration
-STATIC_XP = "static xp"
+STATIC_XP = "static-xp"
 
 # Visual Studio release
 #VS_RELEASE = "vs2008"
@@ -103,7 +102,10 @@ def build_astyle_executable(config):
         system_exit("Bad arg in build_astyle_executable(): " + config)
     slnpath = get_astyle_build_directory(config)
     if os.name == "nt":
-        slnpath = slnpath + "/AStyle.sln"
+        if config == STATIC_XP:
+            slnpath = slnpath + "/AStyle XP.sln"
+        else:
+            slnpath = slnpath + "/AStyle.sln"
         compile_windows_executable(slnpath, config)
     else:
         compile_linux_executable(slnpath, config)
@@ -146,22 +148,20 @@ def compile_windows_executable(slnpath, config):
         buildpath = "C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe"
     else:
         buildpath = (os.getenv("WINDIR")
-                    + "/Microsoft.NET/Framework/"
-                    + sdk
-                    + "/MSBuild.exe")
+                     + "/Microsoft.NET/Framework/"
+                     + sdk
+                     + "/MSBuild.exe")
     if not os.path.isfile(buildpath):
         message = "Cannot find build path: " + buildpath
         system_exit(message)
     if config == DEBUG:
         config_prop = "/property:Configuration=Debug"
-    elif config == STATIC:
+    elif config == STATIC or config == STATIC_XP:
         config_prop = "/property:Configuration=Static"
-    elif config == STATIC_XP:
-        config_prop = "/property:Configuration=Static XP"
     else:
         config_prop = "/property:Configuration=Release"
     platform_prop = "/property:Platform=Win32"
-    if VS_RELEASE >= "vs2013":
+    if VS_RELEASE > "vs2013":
         platform_prop = "/property:Platform=x86"
     msbuild = ([buildpath, config_prop, platform_prop, slnpath])
     buildfile = get_temp_directory() + "/build." + config + ".tmp"
@@ -208,7 +208,10 @@ def get_astyle_build_directory(config):
         system_exit("Bad arg in get_astyle_build_directory(): " + config)
     astyledir = get_astyle_directory()
     if os.name == "nt":
-        subpath = "/build/" + VS_RELEASE
+        if config == STATIC_XP:
+            subpath = "/build/" + VS_RELEASE + "-xp"
+        else:
+            subpath = "/build/" + VS_RELEASE
     else:
         subpath = "/build/gcc"
     astylepath = astyledir + subpath
@@ -225,7 +228,12 @@ def get_astyle_directory(endsep=False):
     """
     if endsep != True and endsep != False:
         system_exit("Bad arg in get_astyle_directory(): " + endsep)
-    astyledir = get_project_directory() + "/AStyle"
+    if os.name == "nt":
+        astyledir = get_project_directory() + "/AStyle"
+    else:
+        astyledir = get_project_directory() + "/AStyle"
+        if not os.path.isdir(astyledir):
+            astyledir = get_project_directory() + "/astyle"
     if not os.path.isdir(astyledir):
         message = "Cannot find astyle directory: " + astyledir
         system_exit(message)
@@ -293,7 +301,12 @@ def get_astyletest_directory(endsep=False):
     """
     if endsep != True and endsep != False:
         system_exit("Bad arg in get_astyletest_directory(): " + endsep)
-    astyletestdir = get_project_directory() + "/AStyleTest"
+    if os.name == "nt":
+        astyletestdir = get_project_directory() + "/AStyleTest"
+    else:
+        astyletestdir = get_project_directory() + "/AStyleTest"
+        if not os.path.isdir(astyletestdir):
+            astyletestdir = get_project_directory() + "/astyletest"
     if not os.path.isdir(astyletestdir):
         message = "Cannot find astyletest directory: " + astyletestdir
         system_exit(message)
@@ -341,7 +354,7 @@ def get_diff_path():
        endexe = True will add an ending '.exe' to Windows.
     """
     if os.name == "nt":
-        exepath = "/Program Files (x86)" + "/WinMerge/WinMergeU.exe"
+        exepath = "/Program Files (x86)" + "/WinMerge2011/WinMergeU.exe"
         if not os.path.isfile(exepath):
             message = "Cannot find diff path: " + exepath
             system_exit(message)
@@ -361,16 +374,11 @@ def get_file_py_directory(endsep=False):
         pydir += '/'
     # verify it is executed from fixed disk and not a USB
     if os.name == "nt":
-        if pydir[0:2] != "C:":
+        if pydir[0:2] != "C:" and pydir[0:2] != "F:":
             system_exit("File executed from drive " + pydir[0:2])
     else:
-        if pydir[0:6] != "/home/":
-            sep = pydir[0:].find("/Projects/")
-            if sep == -1:
-                sep = len(pydir)
-            else:
-                sep += 1
-            system_exit("File executed from drive " + pydir[0:sep])
+       if pydir[0:6] != "/home/":
+            system_exit("File executed from " + pydir)
     return  pydir
 
 # -----------------------------------------------------------------------------
@@ -402,20 +410,24 @@ def get_home_directory(endsep=False):
 
 def get_project_directory(endsep=False):
     """Get the Project directory for the os environment.
-       Extract the Project directory from path[0]
+       Extract the Project directory from sys.path[0]
        endsep = True will add an ending separator.
     """
     # get project directory
     pydir = get_file_py_directory()
-    projdir = pydir
-    tail = pydir
-    while len(tail) > 0:
-        head, tail = os.path.split(projdir)
-        if tail == 'Projects':
-            break
-        projdir = head
-    if len(tail) == 0:
-        system_exit("Cannot find project directory " + pydir[0:])
+
+    #~ projdir = pydir
+    #~ tail = pydir
+    #~ while len(tail) > 0:
+        #~ head, tail = os.path.split(projdir)
+        #~ if tail == 'Projects':
+            #~ break
+        #~ projdir = head
+    #~ if len(tail) == 0:
+        #~ system_exit("Cannot find project directory " + pydir[0:])
+
+    projdir = os.path.realpath(pydir + "../../../")
+    #~ print("project directory = " + projdir)
     if endsep:
         projdir += '/'
     return  projdir
@@ -452,7 +464,6 @@ def get_project_excludes(project):
         excludes.append("--exclude=lua")
     elif project == SHARPDEVELOP:
         excludes.append("--exclude=Debugger.Tests")    # xml data
-        excludes.append("--exclude=QueryMethod.cs")
     return excludes
 
 # -----------------------------------------------------------------------------
@@ -566,7 +577,7 @@ def remove_build_file(buildfile):
         print()
         print(err)
         message = ("The file '{0}' must be removed "
-                    "before continuing").format(buildfile)
+                   "before continuing").format(buildfile)
         system_exit(message)
 
 # -----------------------------------------------------------------------------
@@ -589,26 +600,26 @@ def set_text_color(color):
     """
     if is_executed_from_console():
         if os.name == "nt":
-            color_values = { "blue"    : "color 09",
-                             "cyan"    : "color 0B",
-                             "green"   : "color 0A",
-                             "magenta" : "color 0D",
-                             "red"     : "color 0C",
-                             "white"   : "color 0F",
-                             "yellow"  : "color 0E", }
+            color_values = {"blue"    : "color 09",
+                            "cyan"    : "color 0B",
+                            "green"   : "color 0A",
+                            "magenta" : "color 0D",
+                            "red"     : "color 0C",
+                            "white"   : "color 0F",
+                            "yellow"  : "color 0E"}
 
             system_code = color_values.get(color, "invalid")
             if system_code == "invalid":
                 system_exit("Invalid color param " + color)
             os.system(system_code)
         else:
-            color_values = { "blue"    : "echo -n '[1;34m'",
-                             "cyan"    : "echo -n '[1;36m'",
-                             "green"   : "echo -n '[1;32m'",
-                             "magenta" : "echo -n '[1;35m'",
-                             "red"     : "echo -n '[1;31m'",
-                             "white"   : "echo -n '[1;37m'",
-                             "yellow"  : "echo -n '[1;33m'", }
+            color_values = {"blue"    : "echo -n '[1;34m'",
+                            "cyan"    : "echo -n '[1;36m'",
+                            "green"   : "echo -n '[1;32m'",
+                            "magenta" : "echo -n '[1;35m'",
+                            "red"     : "echo -n '[1;31m'",
+                            "white"   : "echo -n '[1;37m'",
+                            "yellow"  : "echo -n '[1;33m'"}
 
             system_code = color_values.get(color, "invalid")
             if system_code == "invalid":
@@ -662,6 +673,7 @@ def test_all_functions():
 # make the module executable
 # run tests if executed as stand-alone
 if __name__ == "__main__":
+    set_text_color("yellow")
     print(get_python_version())
     print("Testing Library Functions")
     test_all_functions()

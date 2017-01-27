@@ -19,7 +19,7 @@
 					<Add option="-Wextra" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add library="gmockd" />
@@ -31,6 +31,7 @@
 				<Option object_output="objLoc/Release/" />
 				<Option type="1" />
 				<Option compiler="clang" />
+				<Option parameters="--gtest_print_time=0" />
 				<Compiler>
 					<Add option="-O3" />
 					<Add option="-Wall" />
@@ -39,7 +40,7 @@
 					<Add option="-DNDEBUG" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

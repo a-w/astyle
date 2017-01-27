@@ -1,3 +1,8 @@
+// AStyleTestCon.h
+// Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
+// This code is licensed under the MIT License.
+// License.txt describes the conditions under which this software may be distributed.
+
 // AStyleTestCon tests the ASConsole class only. This class is used only in
 // the console build. It also tests the parseOption function for options used
 // by only by the console build (e.g. recursive, preserve-date, verbose). It
@@ -37,7 +42,6 @@ extern ostream* _err;
 //-------------------------------------------------------------------------
 
 // functions in AStyleTestCon_Main.cpp
-// char** buildArgv(const vector<string>& argIn);
 void cleanTestDirectory(const string& directory);
 wstring convertToWideChar(const string& mbStr);
 void createConsoleGlobalObject(ASFormatter& formatter);
@@ -53,6 +57,7 @@ void removeTestFile(const string& testFileName);
 void renameDefaultOptionsFile();
 void restoreDefaultOptionsFile();
 void setTestDirectory();
+void standardizeFileSeparators(string& path);
 void systemAbort(const string& message);
 void systemPause();
 void systemPause(const string& message);

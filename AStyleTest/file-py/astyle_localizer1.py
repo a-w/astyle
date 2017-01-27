@@ -1,4 +1,4 @@
-﻿#! /usr/bin/python
+#! /usr/bin/python
 """Check astyle_main.cpp "settext" translation strings to the test variables
    in AStyleTestLoc.cpp.
 """
@@ -6,8 +6,9 @@
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
-import libastyle        # local directory
 import os
+# local libraries
+import libastyle
 
 # global variables ------------------------------------------------------------
 

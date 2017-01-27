@@ -5,10 +5,11 @@
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
-import libastyle        # local directory
 import os
 import subprocess
 import time
+# local libraries
+import libastyle
 
 # global variables ------------------------------------------------------------
 # always uses the debug configuration
@@ -25,7 +26,6 @@ def main():
     verify_os()
     exepath = "C:/Windows/AppPatch/AppLoc.exe"
     i18npath = __builddir + "/bin/AStyleTestI18nd.exe"
-    command = exepath + ' ' + i18npath + ' ' + "\"--terse_printer --no_close\"" + ' '
     # verify files
     if not os.path.exists(exepath):
         libastyle.system_exit("AppLoc not installed: " + exepath)
@@ -35,9 +35,9 @@ def main():
     # the country LCID is added by the subprocess call
     command = exepath + ' ' + i18npath + ' ' + "\"--terse_output --no_close\"" + ' '
     # run tests
-    print("\nWAIT for a test to finish before running the next")
-    print("Select OK to continue ...")
-    print("\nNOTE: A bad return may work anyway. Check the individual displays.")
+    print("\nWAIT for a test to finish before running the next.")
+    print("NOTE A bad return may work anyway. Check the individual displays.")
+    print("Press OK to continue with the displayed language.\n")
     print("Running Greek Test")
     retval = subprocess.call(command + "/L0408")
     if retval:
@@ -77,10 +77,10 @@ def build_testi18n_executable():
     outfile = open(buildfile, 'w')
     retvalgm = subprocess.call(gmbuild, stdout=outfile)
     if retvalgm:
-        libastyle.system_exit("Bad gmbuild return: " + str(retval))
+        libastyle.system_exit("Bad gmbuild return: " + str(retvalgm))
     retvalcb = subprocess.call(cbbuild, stdout=outfile)
     if retvalcb:
-        libastyle.system_exit("Bad cbbuild return: " + str(retval))
+        libastyle.system_exit("Bad cbbuild return: " + str(retvalcb))
     outfile.close()
     try:
         os.remove(buildfile)
@@ -94,7 +94,6 @@ def verify_os():
     """
     if os.name != "nt":
         print("This script is for Windows only")
-        return
 
 # -----------------------------------------------------------------------------
 

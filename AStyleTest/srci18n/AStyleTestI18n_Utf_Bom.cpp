@@ -1,6 +1,6 @@
 // AStyleTestI18n_Utf_Bom.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 // This module tests the utf-8 and utf-16 file encodings.
@@ -108,7 +108,7 @@ struct ProcessUtf32F : public Test
 TEST_F(ProcessUtf32F, Utf32LE_Abort)
 // test rejection of UTF-32 files
 {
-	ASSERT_TRUE(g_console != NULL) << "Console object not initialized.";
+	ASSERT_TRUE(g_console != nullptr) << "Console object not initialized.";
 	// initialize variables
 	g_console->setIsQuiet(true);		// change this to see results
 	// call astyle processOptions()
@@ -136,7 +136,7 @@ TEST_F(ProcessUtf32F, Utf32LE_Abort)
 TEST_F(ProcessUtf32F, Utf32BE_Abort)
 // test rejection of UTF-32 files
 {
-	ASSERT_TRUE(g_console != NULL) << "Console object not initialized.";
+	ASSERT_TRUE(g_console != nullptr) << "Console object not initialized.";
 	// initialize variables
 	g_console->setIsQuiet(true);		// change this to see results
 	// call astyle processOptions()

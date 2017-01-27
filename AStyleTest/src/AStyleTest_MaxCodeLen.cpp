@@ -1,6 +1,6 @@
 // AStyleTest_MaxCodeLen.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 //----------------------------------------------------------------------------
@@ -39,7 +39,7 @@ TEST(MaxCodeLength, LongOption)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ShortOption)
@@ -62,7 +62,7 @@ TEST(MaxCodeLength, ShortOption)
 	char options[] = "-xC50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ErrorMin)
@@ -81,7 +81,7 @@ TEST(MaxCodeLength, ErrorMin)
 	char* textOut = AStyleMain(text, options, errorHandler2, memoryAlloc);
 	int errorsOut = getErrorHandler2Calls();
 	EXPECT_EQ(errorsIn + 1, errorsOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ErrorMax)
@@ -100,7 +100,7 @@ TEST(MaxCodeLength, ErrorMax)
 	char* textOut = AStyleMain(text, options, errorHandler2, memoryAlloc);
 	int errorsOut = getErrorHandler2Calls();
 	EXPECT_EQ(errorsIn + 1, errorsOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterSemicolon1)
@@ -122,7 +122,7 @@ TEST(MaxCodeLength, BreakAfterSemicolon1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterSemicolon2)
@@ -143,7 +143,7 @@ TEST(MaxCodeLength, BreakAfterSemicolon2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PassedSemicolon)
@@ -171,7 +171,7 @@ TEST(MaxCodeLength, PassedSemicolon)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PassedColon)
@@ -200,7 +200,7 @@ TEST(MaxCodeLength, PassedColon)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeLogical1)
@@ -241,7 +241,7 @@ TEST(MaxCodeLength, BreakBeforeLogical1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeLogical2)
@@ -265,7 +265,7 @@ TEST(MaxCodeLength, BreakBeforeLogical2)
 	char options[] = "max-code-length=80";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterLogical)
@@ -306,7 +306,7 @@ TEST(MaxCodeLength, BreakAfterLogical)
 	char options[] = "max-code-length=50, break-after-logical";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterLogical2)
@@ -330,7 +330,7 @@ TEST(MaxCodeLength, BreakAfterLogical2)
 	char options[] = "max-code-length=80, break-after-logical";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterLogicalMisc)
@@ -368,7 +368,7 @@ TEST(MaxCodeLength, BreakAfterLogicalMisc)
 	char options[] = "max-code-length=70, break-after-logical";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterShortConcatenated)
@@ -391,7 +391,7 @@ TEST(MaxCodeLength, BreakAfterShortConcatenated)
 	char options[] = "-xC50xL";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterComma1)
@@ -425,7 +425,7 @@ TEST(MaxCodeLength, BreakAfterComma1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterComma2)
@@ -449,7 +449,7 @@ TEST(MaxCodeLength, BreakAfterComma2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeClosingParen)
@@ -467,7 +467,7 @@ TEST(MaxCodeLength, BreakBeforeClosingParen)
 	char options[] = "max-code-length=80";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeUnpaddedOperator1)
@@ -487,7 +487,7 @@ TEST(MaxCodeLength, BreakBeforeUnpaddedOperator1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeUnpaddedOperator2)
@@ -510,7 +510,7 @@ TEST(MaxCodeLength, BreakBeforeUnpaddedOperator2)
 	char options[] = "max-code-length=50, pad-oper";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterUnpaddedComparisonOperator)
@@ -532,7 +532,7 @@ TEST(MaxCodeLength, BreakAfterUnpaddedComparisonOperator)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBeforeUnpaddedComparisonOperator)
@@ -553,7 +553,7 @@ TEST(MaxCodeLength, BreakBeforeUnpaddedComparisonOperator)
 	char options[] = "max-code-length=50, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Quote1)
@@ -575,7 +575,7 @@ TEST(MaxCodeLength, Quote1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Quote2)
@@ -590,7 +590,7 @@ TEST(MaxCodeLength, Quote2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Quote3)
@@ -612,7 +612,7 @@ TEST(MaxCodeLength, Quote3)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Quote4)
@@ -628,7 +628,7 @@ TEST(MaxCodeLength, Quote4)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, LineComment1)
@@ -643,7 +643,7 @@ TEST(MaxCodeLength, LineComment1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, LineComment2)
@@ -658,7 +658,7 @@ TEST(MaxCodeLength, LineComment2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, LineComment3)
@@ -685,7 +685,7 @@ TEST(MaxCodeLength, LineComment3)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, LineComment4)
@@ -712,7 +712,7 @@ TEST(MaxCodeLength, LineComment4)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, LineComment5)
@@ -728,7 +728,7 @@ TEST(MaxCodeLength, LineComment5)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Comment1)
@@ -747,7 +747,7 @@ TEST(MaxCodeLength, Comment1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Comment2)
@@ -762,7 +762,7 @@ TEST(MaxCodeLength, Comment2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Comment3)
@@ -789,7 +789,7 @@ TEST(MaxCodeLength, Comment3)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Comment4)
@@ -816,7 +816,7 @@ TEST(MaxCodeLength, Comment4)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Comment5)
@@ -832,7 +832,7 @@ TEST(MaxCodeLength, Comment5)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ExtraSpaces1)
@@ -852,7 +852,7 @@ TEST(MaxCodeLength, ExtraSpaces1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ExtraSpaces2)
@@ -872,7 +872,7 @@ TEST(MaxCodeLength, ExtraSpaces2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Template)
@@ -893,7 +893,7 @@ TEST(MaxCodeLength, Template)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PreprocessorDefine)
@@ -906,7 +906,7 @@ TEST(MaxCodeLength, PreprocessorDefine)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, SQL)
@@ -922,7 +922,7 @@ TEST(MaxCodeLength, SQL)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Assembler)
@@ -940,7 +940,7 @@ TEST(MaxCodeLength, Assembler)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, MicrosoftAssembler)
@@ -958,7 +958,7 @@ TEST(MaxCodeLength, MicrosoftAssembler)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Array)
@@ -975,7 +975,7 @@ TEST(MaxCodeLength, Array)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ArrayInStatement)
@@ -993,7 +993,7 @@ TEST(MaxCodeLength, ArrayInStatement)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ParenBreak1)
@@ -1013,7 +1013,7 @@ TEST(MaxCodeLength, ParenBreak1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ParenBreak2)
@@ -1034,7 +1034,7 @@ TEST(MaxCodeLength, ParenBreak2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ParenBreak3)
@@ -1055,7 +1055,7 @@ TEST(MaxCodeLength, ParenBreak3)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ParenBreak4)
@@ -1072,7 +1072,7 @@ TEST(MaxCodeLength, ParenBreak4)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ParenBreak5)
@@ -1096,12 +1096,12 @@ TEST(MaxCodeLength, ParenBreak5)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, BlockParenBreak1)
+TEST(MaxCodeLength, SquareBracketBreak1)
 {
-	// Max code length should not break before an opening or closing block paren.
+	// Max code length should not break before an opening or closing square bracket.
 	char textIn[] =
 	    "\nvoid foo()\n"
 	    "{\n"
@@ -1116,13 +1116,13 @@ TEST(MaxCodeLength, BlockParenBreak1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, BlockParenBreak2)
+TEST(MaxCodeLength, SquareBracketBreak2)
 {
 	// Max code length should not break before an
-	// opening or closing block paren within a padded block.
+	// opening or closing square bracket within a padded block.
 	char textIn[] =
 	    "\nconst char* TiXmlBase::errorString[ TIXML_ERROR_STRING_COUNT ] =\n"
 	    "{\n"
@@ -1136,7 +1136,7 @@ TEST(MaxCodeLength, BlockParenBreak2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBlocks1)
@@ -1167,7 +1167,7 @@ TEST(MaxCodeLength, BreakBlocks1)
 	char options[] = "max-code-length=50, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBlocks2)
@@ -1202,7 +1202,7 @@ TEST(MaxCodeLength, BreakBlocks2)
 	char options[] = "max-code-length=50, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBlocks3)
@@ -1230,7 +1230,7 @@ TEST(MaxCodeLength, BreakBlocks3)
 	char options[] = "max-code-length=100, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBlocksAll1)
@@ -1266,7 +1266,7 @@ TEST(MaxCodeLength, BreakBlocksAll1)
 	char options[] = "max-code-length=50, break-blocks=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakBlocksAll2)
@@ -1300,7 +1300,7 @@ TEST(MaxCodeLength, BreakBlocksAll2)
 	char options[] = "max-code-length=100, break-blocks=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakMinimum)
@@ -1315,7 +1315,7 @@ TEST(MaxCodeLength, BreakMinimum)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakMaximum1)
@@ -1329,7 +1329,7 @@ TEST(MaxCodeLength, BreakMaximum1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakMaximum2)
@@ -1352,7 +1352,7 @@ TEST(MaxCodeLength, BreakMaximum2)
 	char options[] = "max-code-length=80";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakMaximum3)
@@ -1378,7 +1378,7 @@ TEST(MaxCodeLength, BreakMaximum3)
 	char options[] = "max-code-length=50, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakAfterLineBreak)
@@ -1402,7 +1402,7 @@ TEST(MaxCodeLength, BreakAfterLineBreak)
 	char options[] = "max-code-length=80";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakMaximumWithPad)
@@ -1425,7 +1425,7 @@ TEST(MaxCodeLength, BreakMaximumWithPad)
 	char options[] = "max-code-length=50, pad-paren, pad-oper";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineStatements1)
@@ -1446,7 +1446,7 @@ TEST(MaxCodeLength, KeepOneLineStatements1)
 	char options[] = "max-code-length=50, keep-one-line-statements";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineStatements2)
@@ -1471,7 +1471,7 @@ TEST(MaxCodeLength, KeepOneLineStatements2)
 	char options[] = "max-code-length=50, keep-one-line-statements, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineStatements3)
@@ -1503,7 +1503,7 @@ TEST(MaxCodeLength, KeepOneLineStatements3)
 	char options[] = "max-code-length=50, keep-one-line-statements, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineStatements4)
@@ -1538,7 +1538,7 @@ TEST(MaxCodeLength, KeepOneLineStatements4)
 	char options[] = "max-code-length=50, keep-one-line-statements, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineStatements5)
@@ -1567,7 +1567,7 @@ TEST(MaxCodeLength, KeepOneLineStatements5)
 	char options[] = "max-code-length=50, keep-one-line-statements";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineBlocks1)
@@ -1579,7 +1579,7 @@ TEST(MaxCodeLength, KeepOneLineBlocks1)
 	char options[] = "max-code-length=50, keep-one-line-blocks";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineBlocks2)
@@ -1615,7 +1615,7 @@ TEST(MaxCodeLength, KeepOneLineBlocks2)
 	char options[] = "max-code-length=50, keep-one-line-blocks, break-blocks, keep-one-line-statements";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineBlocks3)
@@ -1630,7 +1630,7 @@ TEST(MaxCodeLength, KeepOneLineBlocks3)
 	char options[] = "max-code-length=50, keep-one-line-blocks, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineBlocksLogical)
@@ -1642,7 +1642,7 @@ TEST(MaxCodeLength, KeepOneLineBlocksLogical)
 	char options[] = "max-code-length=50, keep-one-line-blocks";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, KeepOneLineBlocksSans)
@@ -1658,7 +1658,7 @@ TEST(MaxCodeLength, KeepOneLineBlocksSans)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignPointerToType1)
@@ -1675,7 +1675,7 @@ TEST(MaxCodeLength, AlignPointerToType1)
 	char options[] = "max-code-length=50, align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignPointerToType2)
@@ -1696,7 +1696,7 @@ TEST(MaxCodeLength, AlignPointerToType2)
 	char options[] = "max-code-length=50, align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignPointerToType3)
@@ -1717,13 +1717,13 @@ TEST(MaxCodeLength, AlignPointerToType3)
 	char options[] = "max-code-length=50, align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddBrackets2)
+TEST(MaxCodeLength, AddBraces2)
 {
-	// Test max code length with add-brackets.
-	// Should break line when add-brackets is used.
+	// Test max code length with add-braces.
+	// Should break line when add-braces is used.
 	char textIn[] =
 	    "\nvoid foo()\n"
 	    "{\n"
@@ -1738,16 +1738,16 @@ TEST(MaxCodeLength, AddBrackets2)
 	    "                     _(\"(Maybe the file is write-protected?\"));\n"
 	    "    }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-brackets";
+	char options[] = "max-code-length=50, add-braces";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddBrackets3)
+TEST(MaxCodeLength, AddBraces3)
 {
-	// Test max code length with add-brackets.
-	// Should NOT break on the space padding following an added bracket.
+	// Test max code length with add-braces.
+	// Should NOT break on the space padding following an added brace.
 	// This will add an empty line after the conditional.
 	char textIn[] =
 	    "\nvoid foo()\n"
@@ -1762,15 +1762,15 @@ TEST(MaxCodeLength, AddBrackets3)
 	    "        AnalyseLine(language);\n"
 	    "    }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-brackets";
+	char options[] = "max-code-length=50, add-braces";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddBrackets4)
+TEST(MaxCodeLength, AddBraces4)
 {
-	// Test max code length with add-brackets.
+	// Test max code length with add-braces.
 	// Should NOT break on the comma following the number 1.
 	// This will leave a long line that will break on a subsequent run.
 	// It should adjust the break point to the highest space split point.
@@ -1788,16 +1788,16 @@ TEST(MaxCodeLength, AddBrackets4)
 	    "                            2);    // skip outmost single-quotes\n"
 	    "    }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-brackets";
+	char options[] = "max-code-length=50, add-braces";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddBrackets5)
+TEST(MaxCodeLength, AddBraces5)
 {
-	// Test max code length with add-brackets.
-	// Should break the brackets.
+	// Test max code length with add-braces.
+	// Should break the braces.
 	// See the following test for this condition with keep-one-line-blocks.
 	char textIn[] =
 	    "\nvoid foo()\n"
@@ -1819,16 +1819,16 @@ TEST(MaxCodeLength, AddBrackets5)
 	    "        bst = bstNone;\n"
 	    "    }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-brackets";
+	char options[] = "max-code-length=50, add-braces";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddBrackets6)
+TEST(MaxCodeLength, AddBraces6)
 {
-	// Test max code length with add-brackets and keep-one-line-blocks.
-	// Should break the brackets.
+	// Test max code length with add-braces and keep-one-line-blocks.
+	// Should break the braces.
 	// See the previous test for this condition without keep-one-line-blocks.
 	char textIn[] =
 	    "\nvoid foo()\n"
@@ -1844,16 +1844,16 @@ TEST(MaxCodeLength, AddBrackets6)
 	    "    else if (event.GetId() == idCBSortByKind) { bst = bstKind; }\n"
 	    "    else { bst = bstNone; }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-brackets, keep-one-line-blocks";
+	char options[] = "max-code-length=50, add-braces, keep-one-line-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AddOneLineBrackets)
+TEST(MaxCodeLength, AddOneLineBraces)
 {
-	// Test max code length with add-one-line-brackets.
-	// Should NOT break line when add-one-line-brackets is used.
+	// Test max code length with add-one-line-braces.
+	// Should NOT break line when add-one-line-braces is used.
 	char textIn[] =
 	    "\nvoid foo()\n"
 	    "{\n"
@@ -1866,10 +1866,10 @@ TEST(MaxCodeLength, AddOneLineBrackets)
 	    "    if(!ret)\n"
 	    "    { cbMessageBox(_(\"Couldn't save workspace \") + _(\"(Maybe the file is write-protected?\")); }\n"
 	    "}";
-	char options[] = "max-code-length=50, add-one-line-brackets";
+	char options[] = "max-code-length=50, add-one-line-braces";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen1)
@@ -1892,7 +1892,7 @@ TEST(MaxCodeLength, PadParen1)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen2)
@@ -1915,7 +1915,7 @@ TEST(MaxCodeLength, PadParen2)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen3)
@@ -1938,7 +1938,7 @@ TEST(MaxCodeLength, PadParen3)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen4)
@@ -1961,7 +1961,7 @@ TEST(MaxCodeLength, PadParen4)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen5)
@@ -1982,7 +1982,7 @@ TEST(MaxCodeLength, PadParen5)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen6)
@@ -2003,7 +2003,30 @@ TEST(MaxCodeLength, PadParen6)
 	char options[] = "max-code-length=50, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
+}
+
+TEST(MaxCodeLength, Exponential)
+{
+	// Test max code length with an exponential.
+	// Should break an exponential.
+	char textIn[] =
+	    "\n"
+	    "int main()\n"
+	    "{\n"
+	    "    double myownverylongvariablenamejusttobreak = 1e-5; //and some random comment behind it\n"
+	    "}";
+	char text[] =
+	    "\n"
+	    "int main()\n"
+	    "{\n"
+	    "    double myownverylongvariablenamejusttobreak =\n"
+	    "        1e-5; //and some random comment behind it\n"
+	    "}";
+	char options[] = "max-code-length=80";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, PadParen7)
@@ -2024,13 +2047,13 @@ TEST(MaxCodeLength, PadParen7)
 	char options[] = "max-code-length=80, pad-paren";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AttachBracket2)
+TEST(MaxCodeLength, AttachBrace2)
 {
-	// Test max code length when a bracket is attached inside a comment.
-	// Should break when the bracket is attached.
+	// Test max code length when a brace is attached inside a comment.
+	// Should break when the brace is attached.
 	char textIn[] =
 	    "\nbool QueryColour ( char* propgrid, char* primary ) // comment\n"
 	    "{\n"
@@ -2042,13 +2065,13 @@ TEST(MaxCodeLength, AttachBracket2)
 	char options[] = "max-code-length=50, style=attach";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AttachBracket3)
+TEST(MaxCodeLength, AttachBrace3)
 {
-	// Test max code length when a bracket is attached inside a comment.
-	// Special problem where bracket wasn't attached on the first try
+	// Test max code length when a brace is attached inside a comment.
+	// Special problem where brace wasn't attached on the first try
 	// due to the setting of "formattedLineCommentNum".
 	char textIn[] =
 	    "\nvoid foo()\n"
@@ -2070,12 +2093,12 @@ TEST(MaxCodeLength, AttachBracket3)
 	char options[] = "max-code-length=100, style=attach";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AttachBracket4)
+TEST(MaxCodeLength, AttachBrace4)
 {
-	// Test max code length when a bracket is changed from run-in to attached.
+	// Test max code length when a brace is changed from run-in to attached.
 	char textIn[] =
 	    "\nvoid ClassBrowser::SetParser ( Parser* parser )\n"
 	    "{   if ( parser != pParser\n"
@@ -2108,12 +2131,12 @@ TEST(MaxCodeLength, AttachBracket4)
 	char options[] = "max-code-length=50, style=attach";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AttachBracket5)
+TEST(MaxCodeLength, AttachBrace5)
 {
-	// Splitting a line with a following comment and the line follows a closing bracket.
+	// Splitting a line with a following comment and the line follows a closing brace.
 	char textIn[] =
 	    "\nvoid foo()\n"
 	    "{\n"
@@ -2125,19 +2148,18 @@ TEST(MaxCodeLength, AttachBracket5)
 	    "{\n"
 	    "}\n"
 	    "\n"
-	    "void B_driver::CorrectCygwinPath(wxString& path) {\n"
-	    "    /* dummy */\n"
-	    "}";
+	    "void B_driver::CorrectCygwinPath(wxString&\n"
+	    "                                 path) {/* dummy */}";
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AttachBracket6)
+TEST(MaxCodeLength, AttachBrace6)
 {
-	// Test max code length when a bracket is attached.
-	// An array exceeds max-code-length when the bracket is attached.
+	// Test max code length when a brace is attached.
+	// An array exceeds max-code-length when the brace is attached.
 	char textIn[] =
 	    "\nTiXmlBase::Entity TiXmlBase::entity[ NM_ENTITY ] =\n"
 	    "{\n"
@@ -2151,12 +2173,12 @@ TEST(MaxCodeLength, AttachBracket6)
 	char options[] = "max-code-length=50, style=attach";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, HorstmannBracket1)
+TEST(MaxCodeLength, HorstmannBrace1)
 {
-	// Test max code length with Horstmann brackets.
+	// Test max code length with Horstmann braces.
 	// Should split the line 3 times on the first try.
 	char textIn[] =
 	    "\nvoid Foo()\n"
@@ -2176,14 +2198,14 @@ TEST(MaxCodeLength, HorstmannBracket1)
 	char options[] = "max-code-length=50, style=horstmann";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, HorstmannBracket2)
+TEST(MaxCodeLength, HorstmannBrace2)
 {
-	// Test max code length with Horstmann brackets.
+	// Test max code length with Horstmann braces.
 	// Should not split the line because of trailing spaces
-	// when converting to attached brackets.
+	// when converting to attached braces.
 	char textIn[] =
 	    "\nDeclaration& operator= (const Declaration& copy)\n"
 	    "{   Clear();\n"
@@ -2195,13 +2217,13 @@ TEST(MaxCodeLength, HorstmannBracket2)
 	char options[] = "max-code-length=50, style=java";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
-TEST(MaxCodeLength, AfterClosingBracket)
+TEST(MaxCodeLength, AfterClosingBrace)
 {
-	// Test max code length with C# brackets.
-	// Should split the line after the closing bracket.
+	// Test max code length with C# braces.
+	// Should split the line after the closing brace.
 	char textIn[] =
 	    "\npublic void UploadUsageDataAsync () {\n"
 	    "    base.InvokeAsync(this.onBeginUploadUsageDataDelegate, new object[] {\n"
@@ -2219,7 +2241,7 @@ TEST(MaxCodeLength, AfterClosingBracket)
 	char options[] = "max-code-length=80, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToType1)
@@ -2249,7 +2271,7 @@ TEST(MaxCodeLength, AlignToType1)
 	char options[] = "max-code-length=50, align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToType2)
@@ -2270,7 +2292,7 @@ TEST(MaxCodeLength, AlignToType2)
 	char options[] = "max-code-length=50, align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToMiddle1)
@@ -2300,7 +2322,7 @@ TEST(MaxCodeLength, AlignToMiddle1)
 	char options[] = "max-code-length=50, align-pointer=middle";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToMiddle2)
@@ -2337,7 +2359,7 @@ TEST(MaxCodeLength, AlignToMiddle2)
 	char options[] = "max-code-length=50, align-pointer=middle";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToMiddle3)
@@ -2353,7 +2375,7 @@ TEST(MaxCodeLength, AlignToMiddle3)
 	char options[] = "max-code-length=50, align-pointer=middle";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToMiddle4)
@@ -2374,7 +2396,7 @@ TEST(MaxCodeLength, AlignToMiddle4)
 	char options[] = "max-code-length=50, align-pointer=middle";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToName1)
@@ -2404,7 +2426,7 @@ TEST(MaxCodeLength, AlignToName1)
 	char options[] = "max-code-length=50, align-pointer=name";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, AlignToName2)
@@ -2425,7 +2447,7 @@ TEST(MaxCodeLength, AlignToName2)
 	char options[] = "max-code-length=50, align-pointer=name";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength1)
@@ -2450,7 +2472,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength2)
@@ -2476,7 +2498,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength3)
@@ -2498,7 +2520,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength3)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength4)
@@ -2521,7 +2543,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength4)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength5)
@@ -2547,7 +2569,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength5)
 	char options[] = "max-code-length=50, break-blocks";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength6)
@@ -2565,7 +2587,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength6)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength7)
@@ -2589,7 +2611,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength7)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, BreakPastMaxCodeLength8)
@@ -2615,7 +2637,7 @@ TEST(MaxCodeLength, BreakPastMaxCodeLength8)
 	char options[] = "max-code-length=50, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, TwoBreaksWithComment2)
@@ -2637,7 +2659,7 @@ TEST(MaxCodeLength, TwoBreaksWithComment2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc1)
@@ -2659,7 +2681,7 @@ TEST(MaxCodeLength, Misc1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc2)
@@ -2680,7 +2702,7 @@ TEST(MaxCodeLength, Misc2)
 	char options[] = "max-code-length=50, pad-paren-out";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc3)
@@ -2700,7 +2722,7 @@ TEST(MaxCodeLength, Misc3)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc4)
@@ -2719,7 +2741,7 @@ TEST(MaxCodeLength, Misc4)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc5)
@@ -2739,7 +2761,7 @@ TEST(MaxCodeLength, Misc5)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, Misc6)
@@ -2759,7 +2781,7 @@ TEST(MaxCodeLength, Misc6)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ObjectiveC1)
@@ -2783,7 +2805,7 @@ TEST(MaxCodeLength, ObjectiveC1)
 	    "        if ( [ node isApplication ] ) {\n"
 	    "            key = nodepath;\n"
 	    "        } else if ( [ nodepath isxxxxxxxxxxxxxxxxxxEqual:\n"
-	    "                      NSHomeDirectory() ] ) {\n"
+	    "                               NSHomeDirectory() ] ) {\n"
 	    "            key = @\"home\";\n"
 	    "        }\n"
 	    "    }\n"
@@ -2791,7 +2813,7 @@ TEST(MaxCodeLength, ObjectiveC1)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, ObjectiveC2)
@@ -2815,7 +2837,7 @@ TEST(MaxCodeLength, ObjectiveC2)
 	    "        if ( [ node isApplication ] ) {\n"
 	    "            key = nodepath;\n"
 	    "        } else if ( [ nodepath isxxxxxxxxxxxxxxxxxxEqual :\n"
-	    "                      NSHomeDirectory() ] ) {\n"
+	    "                               NSHomeDirectory() ] ) {\n"
 	    "            key = @\"home\";\n"
 	    "        }\n"
 	    "    }\n"
@@ -2823,7 +2845,7 @@ TEST(MaxCodeLength, ObjectiveC2)
 	char options[] = "max-code-length=50";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, CSharp1)
@@ -2845,7 +2867,7 @@ TEST(MaxCodeLength, CSharp1)
 	char options[] = "max-code-length=80, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(MaxCodeLength, CSharp2)
@@ -2873,7 +2895,7 @@ TEST(MaxCodeLength, CSharp2)
 	char options[] = "max-code-length=80, mode=cs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 //----------------------------------------------------------------------------

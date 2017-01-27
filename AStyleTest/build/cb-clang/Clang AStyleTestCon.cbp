@@ -13,14 +13,15 @@
 				<Option compiler="clang" />
 				<Option parameters="--terse_output" />
 				<Compiler>
-					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
+					<Add option="-Wextra" />
 					<Add option="-DASTYLECON_LIB" />
 					<Add directory="../../src" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add library="gmockd" />
@@ -32,15 +33,17 @@
 				<Option object_output="objCon/Release/" />
 				<Option type="1" />
 				<Option compiler="clang" />
+				<Option parameters="--gtest_print_time=0" />
 				<Compiler>
-					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
+					<Add option="-Wextra" />
 					<Add option="-DNDEBUG" />
 					<Add option="-DASTYLECON_LIB" />
 					<Add directory="../../src" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

@@ -1,6 +1,6 @@
 // AStyleTest_AlignPointer.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 //----------------------------------------------------------------------------
@@ -626,7 +626,7 @@ TEST(AlignPointerNone, CSharp)
 
 TEST(AlignPointerNone, RvalueReference)
 {
-	// test on a rvalue reference.
+	// test on an rvalue reference.
 	char text[] =
 	    "\nMemoryBlock&& f(MemoryBlock &&block)\n"
 	    "{\n"
@@ -648,7 +648,7 @@ TEST(AlignPointerNone, RvalueReference)
 
 TEST(AlignPointerNone, RvalueReferenceDeclaration1)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char text[] =
 	    "\nclass FooClass\n"
 	    "{\n"
@@ -664,7 +664,7 @@ TEST(AlignPointerNone, RvalueReferenceDeclaration1)
 
 TEST(AlignPointerNone, RvalueReferenceDeclaration2)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char text[] =
 	    "\nstruct A {\n"
 	    "    A& operator=( const A&& );\n"
@@ -677,13 +677,28 @@ TEST(AlignPointerNone, RvalueReferenceDeclaration2)
 
 TEST(AlignPointerNone, RvalueReferenceOperatorOverload)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char text[] =
 	    "\nstruct Test\n"
 	    "{\n"
 	    "    Test operator=(Test && rhs);\n"
 	    "};";
 	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(AlignPointerNone, RvalueReferenceTemplate)
+{
+	// test an rvalue reference in a template.
+	// pad-oper should NOT space pad before "&&".
+	char text[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types>&& tuple);";
+	char options[] = "pad-oper";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
 	delete[] textOut;
@@ -721,7 +736,7 @@ TEST(AlignPointerNone, TrailingReferenceType)
 
 TEST(AlignPointerNone, SquareBrackets)
 {
-	// A * in brackets is an operator.
+	// A * in square brackets is an operator.
 	// Should not change the alignment.
 	char text[] =
 	    "\nclass Matrix\n"
@@ -1861,7 +1876,7 @@ TEST(AlignPointerType, RvalueReference)
 
 TEST(AlignPointerType, RvalueReferenceDeclaration1)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nclass FooClass\n"
 	    "{\n"
@@ -1884,7 +1899,7 @@ TEST(AlignPointerType, RvalueReferenceDeclaration1)
 
 TEST(AlignPointerType, RvalueReferenceDeclaration2)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct A {\n"
 	    "    A & operator=( const A && );\n"
@@ -1901,7 +1916,7 @@ TEST(AlignPointerType, RvalueReferenceDeclaration2)
 
 TEST(AlignPointerType, RvalueReferenceOperatorOverload)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct Test\n"
 	    "{\n"
@@ -1912,6 +1927,25 @@ TEST(AlignPointerType, RvalueReferenceOperatorOverload)
 	    "{\n"
 	    "    Test operator=(Test&& rhs);\n"
 	    "};";
+	char options[] = "align-pointer=type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(AlignPointerType, RvalueReferenceTemplate)
+{
+	// test an rvalue reference in a template.
+	char textIn[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types> &&tuple);";
+	char text[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types>&& tuple);";
 	char options[] = "align-pointer=type";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
@@ -1957,7 +1991,7 @@ TEST(AlignPointerType, TrailingReferenceType)
 
 TEST(AlignPointerType, SquareBrackets)
 {
-	// A * in brackets is an operator.
+	// A * in square brackets is an operator.
 	// Should not change the alignment.
 	char text[] =
 	    "\nclass Matrix\n"
@@ -3070,7 +3104,7 @@ TEST(AlignPointerMiddle, RvalueReference)
 
 TEST(AlignPointerMiddle, RvalueReferenceDeclaration1)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nclass FooClass\n"
 	    "{\n"
@@ -3093,7 +3127,7 @@ TEST(AlignPointerMiddle, RvalueReferenceDeclaration1)
 
 TEST(AlignPointerMiddle, RvalueReferenceDeclaration2)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct A {\n"
 	    "    A& operator=( const A&& );\n"
@@ -3110,7 +3144,7 @@ TEST(AlignPointerMiddle, RvalueReferenceDeclaration2)
 
 TEST(AlignPointerMiddle, RvalueReferenceOperatorOverload)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct Test\n"
 	    "{\n"
@@ -3121,6 +3155,25 @@ TEST(AlignPointerMiddle, RvalueReferenceOperatorOverload)
 	    "{\n"
 	    "    Test operator=(Test && rhs);\n"
 	    "};";
+	char options[] = "align-pointer=middle";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(AlignPointerMiddle, RvalueReferenceTemplate)
+{
+	// test an rvalue reference in a template.
+	char textIn[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types>&&tuple);";
+	char text[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types> && tuple);";
 	char options[] = "align-pointer=middle";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
@@ -3166,7 +3219,7 @@ TEST(AlignPointerMiddle, TrailingReferenceType)
 
 TEST(AlignPointerMiddle, SquareBrackets)
 {
-	// A * in brackets is an operator.
+	// A * in square brackets is an operator.
 	// Should not change the alignment.
 	char text[] =
 	    "\nclass Matrix\n"
@@ -4295,7 +4348,7 @@ TEST(AlignPointerName, RvalueReference)
 
 TEST(AlignPointerName, RvalueReferenceDeclaration1)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nclass FooClass\n"
 	    "{\n"
@@ -4318,7 +4371,7 @@ TEST(AlignPointerName, RvalueReferenceDeclaration1)
 
 TEST(AlignPointerName, RvalueReferenceDeclaration2)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct A {\n"
 	    "    A& operator=( const A&& );\n"
@@ -4335,7 +4388,7 @@ TEST(AlignPointerName, RvalueReferenceDeclaration2)
 
 TEST(AlignPointerName, RvalueReferenceOperatorOverload)
 {
-	// test on a rvalue reference in a declaration.
+	// test on an rvalue reference in a declaration.
 	char textIn[] =
 	    "\nstruct Test\n"
 	    "{\n"
@@ -4346,6 +4399,25 @@ TEST(AlignPointerName, RvalueReferenceOperatorOverload)
 	    "{\n"
 	    "    Test operator=(Test &&rhs);\n"
 	    "};";
+	char options[] = "align-pointer=name";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(AlignPointerName, RvalueReferenceTemplate)
+{
+	// test an rvalue reference in a template.
+	char textIn[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types>&& tuple);";
+	char text[] =
+	    "\ntemplate <typename Types,\n"
+	    "          typename I = std::make_index_sequence<\n"
+	    "              std::tuple_size<std::tuple<Types>>::value>>\n"
+	    "constexpr auto tuple_to_array(std::tuple<Types> &&tuple);";
 	char options[] = "align-pointer=name";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
@@ -4391,7 +4463,7 @@ TEST(AlignPointerName, TrailingReferenceType)
 
 TEST(AlignPointerName, SquareBrackets)
 {
-	// A * in brackets is an operator.
+	// A * in square brackets is an operator.
 	// Should not change the alignment.
 	char text[] =
 	    "\nclass Matrix\n"
@@ -5102,14 +5174,14 @@ TEST(AlignReferenceToPointer, PointerType_ReferenceDefault)
 {
 	// Test *& with align-pointer=type and align-reference default.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*> * & container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*>& operators)\n"
 	    "{}\n"
@@ -5125,14 +5197,14 @@ TEST(AlignReferenceToPointer, PointerType_ReferenceType)
 {
 	// Test *& with align-pointer=type and align-reference=type.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*> * & container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*>& operators)\n"
 	    "{}\n"
@@ -5148,14 +5220,14 @@ TEST(AlignReferenceToPointer, PointerType_ReferenceMiddle)
 {
 	// Test *& with align-pointer=type and align-reference=middle.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *>& operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*> * &container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>* & container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>* & container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
@@ -5171,14 +5243,14 @@ TEST(AlignReferenceToPointer, PointerType_ReferenceName)
 {
 	// Test *& with align-pointer=type and align-reference=name.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*>& operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*> * & container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>* &container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>* &container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> &operators)\n"
 	    "{}\n"
@@ -5224,14 +5296,14 @@ TEST(AlignReferenceToPointer, PointerMiddle_ReferenceType_)
 	// Test *& with align-pointer=middle and align-reference=type.
 	// Conflicting alignments aligns both to pointer value.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*>* &container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *>& operators)\n"
 	    "{}\n"
@@ -5247,14 +5319,14 @@ TEST(AlignReferenceToPointer, PointerMiddle_ReferenceDefault)
 {
 	// Test *& with align-pointer=middle and align-reference default.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> &operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string*>*> *& container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> & operators)\n"
 	    "{}\n"
@@ -5270,14 +5342,14 @@ TEST(AlignReferenceToPointer, PointerMiddle_ReferenceMiddle)
 {
 	// Test *& with align-pointer=middle and align-reference=middle.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> &operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string*>*> *& container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> & operators)\n"
 	    "{}\n"
@@ -5293,14 +5365,14 @@ TEST(AlignReferenceToPointer, PointerMiddle_ReferenceName)
 {
 	// Test *& with align-pointer=middle and align-reference=name.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*>* &container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> * &container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> * &container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> &operators)\n"
 	    "{}\n"
@@ -5346,14 +5418,14 @@ TEST(AlignReferenceToPointer, PointerName_ReferenceType)
 	// Test *& with align-pointer=name and align-reference=type.
 	// Conflicting alignments aligns both to pointer value.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string *>*>* &container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *>& operators)\n"
 	    "{}\n"
@@ -5370,14 +5442,14 @@ TEST(AlignReferenceToPointer, PointerName_ReferenceMiddle)
 	// Test *& with align-pointer=name and align-reference=middle.
 	// Conflicting alignments aligns both to pointer value.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*>& operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string*>*>* &container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> & operators)\n"
 	    "{}\n"
@@ -5393,14 +5465,14 @@ TEST(AlignReferenceToPointer, PointerName_ReferenceDefault)
 {
 	// Test *& with align-pointer=middle and align-reference default.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string*>*> * & container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> &operators)\n"
 	    "{}\n"
@@ -5416,14 +5488,14 @@ TEST(AlignReferenceToPointer, PointerName_ReferenceName)
 {
 	// Test *& with align-pointer=name and align-reference=name.
 	char textIn[] =
-	    "\nvoid deleteContainer2 (vector<BracketType>*& container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType>*& container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string*> & operators)\n"
 	    "{}\n"
 	    "void deleteContainer1 (vector<vector<const string*>*> * & container)\n"
 	    "{}";
 	char text[] =
-	    "\nvoid deleteContainer2 (vector<BracketType> *&container)\n"
+	    "\nvoid deleteContainer2 (vector<BraceType> *&container)\n"
 	    "{}\n"
 	    "void buildOperators (vector<const string *> &operators)\n"
 	    "{}\n"

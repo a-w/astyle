@@ -1,7 +1,4 @@
 # Make file for Intel compiler on Linux or compatible OS
-# The license.html file describes the conditions under
-# which this software may be distributed.
-#
 
 # Before running "make" the COMPILER environment variables must be set.
 # To set the environment variables "source" the compiler environment script:
@@ -49,8 +46,8 @@ bindir = bin
 objdir = obj
 ipath=$(prefix)/bin
 
-CBASEFLAGS = -w3 -Wall -fno-rtti -fno-exceptions
-JAVAINCS   = -I$(JAVA_HOME)/include
+CBASEFLAGS = -w3 -Wall -fno-rtti -fno-exceptions  -std=c++11
+JAVAINCS   = -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/linux
 CXX = icpc
 INSTALL=install -o $(USER) -g $(USER)
 
@@ -64,12 +61,12 @@ else
     CFLAGSr   = -DNDEBUG -O3 $(CBASEFLAGS)
     CFLAGSd   = -g $(CBASEFLAGS)
 endif
-CFLAGSs   = -DASTYLE_LIB -fPIC -fvisibility=hidden $(CFLAGSr)
-CFLAGSsd  = -DASTYLE_LIB -fPIC -fvisibility=hidden $(CFLAGSd)
+CFLAGSs   = -DASTYLE_LIB -fPIC $(CFLAGSr)
+CFLAGSsd  = -DASTYLE_LIB -fPIC $(CFLAGSd)
 CFLAGSa   = -DASTYLE_LIB $(CFLAGSr)
 CFLAGSad  = -DASTYLE_LIB $(CFLAGSd)
-CFLAGSsj  = -DASTYLE_JNI -fPIC -fvisibility=hidden $(CFLAGSr) $(JAVAINCS)
-CFLAGSsjd = -DASTYLE_JNI -fPIC -fvisibility=hidden $(CFLAGSd) $(JAVAINCS)
+CFLAGSsj  = -DASTYLE_JNI -fPIC $(CFLAGSr) $(JAVAINCS)
+CFLAGSsjd = -DASTYLE_JNI -fPIC $(CFLAGSd) $(JAVAINCS)
 
 # define link options
 ifdef LDFLAGS
@@ -151,13 +148,13 @@ astyled:  $(OBJd)
 shared:  libastyle.so
 libastyle.so:  $(OBJs)
 	@ mkdir -p $(bindir)
-	$(CXX) -shared $(LDFLAGSr) -o $(bindir)/libastyle-2.06.so $^
+	$(CXX) -shared $(LDFLAGSr) -o $(bindir)/libastyle-2.7.so $^
 	@ echo
 
 shareddebug:  libastyled.so
 libastyled.so:  $(OBJsd)
 	@ mkdir -p $(bindir)
-	$(CXX) -shared $(LDFLAGSd) -o $(bindir)/libastyle-2.06d.so $^
+	$(CXX) -shared $(LDFLAGSd) -o $(bindir)/libastyle-2.7d.so $^
 	@ echo
 
 static:  libastyle.a
@@ -175,13 +172,13 @@ libastyled.a:  $(OBJad)
 java:  libastylej.so
 libastylej.so:  $(OBJsj)
 	@ mkdir -p $(bindir)
-	$(CXX) -shared $(LDFLAGSr) -o $(bindir)/libastyle-2.06j.so $^
+	$(CXX) -shared $(LDFLAGSr) -o $(bindir)/libastyle-2.7j.so $^
 	@ echo
 
 javadebug:  libastylejd.so
 libastylejd.so:  $(OBJsjd)
 	@ mkdir -p $(bindir)
-	$(CXX) -shared $(LDFLAGSd) -o $(bindir)/libastyle-2.06jd.so $^
+	$(CXX) -shared $(LDFLAGSd) -o $(bindir)/libastyle-2.7jd.so $^
 	@ echo
 
 all:  release debug shared shareddebug static staticdebug

@@ -1,14 +1,15 @@
-﻿#! /usr/bin/python
+#! /usr/bin/python
 """ Run the Visual Studio AStyleTestI18n test using AppLocale to test non-ASCII files.
 """
 
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
-import libastyle        # local directory
 import os
 import subprocess
 import time
+# local libraries
+import libastyle
 
 # global variables ------------------------------------------------------------
 # change the following for the correct VS version
@@ -35,9 +36,9 @@ def main():
     # the country LCID is added by the subprocess call
     command = exepath + ' ' + i18npath + ' ' + "\"--terse_output --no_close\"" + ' '
     # run tests
-    print("\nWAIT for a test to finish before running the next")
-    print("Select OK to continue ...")
-    print("\nNOTE: A bad return may work anyway. Check the individual displays.")
+    print("\nWAIT for a test to finish before running the next.")
+    print("NOTE A bad return may work anyway. Check the individual displays.")
+    print("Press OK to continue with the displayed language.\n")
     print("Running Greek Test")
     retval = subprocess.call(command + "/L0408")
     if retval:

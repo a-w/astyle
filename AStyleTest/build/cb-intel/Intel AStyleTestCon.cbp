@@ -19,12 +19,13 @@
 					<Add option="-g" />
 					<Add option="-fno-exceptions" />
 					<Add option="-Wextra" />
+					<Add option="-std=c++11" />
 					<Add option="-DGTEST_USE_OWN_TR1_TUPLE=1" />
 					<Add option="-DASTYLECON_LIB" />
 					<Add directory="../../src" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add library="gmockd" />
@@ -36,12 +37,14 @@
 				<Option object_output="objCon/Release/" />
 				<Option type="1" />
 				<Option compiler="icc" />
+				<Option parameters="--gtest_print_time=0" />
 				<Compiler>
 					<Add option="-fno-rtti" />
 					<Add option="-Wall" />
 					<Add option="-w2" />
 					<Add option="-fno-exceptions" />
 					<Add option="-Wextra" />
+					<Add option="-std=c++11" />
 					<Add option="-wd11074,11076" />
 					<Add option="-DGTEST_USE_OWN_TR1_TUPLE=1" />
 					<Add option="-DASTYLECON_LIB" />
@@ -49,7 +52,7 @@
 					<Add directory="../../src" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
+					<Add directory="../../../googletest/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

@@ -1,6 +1,6 @@
 // AStyleTest_ObjC.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 //----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ TEST_F(ObjCStyleF, Default)
 	char options[] = "";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(textIn, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Allman)
@@ -98,7 +98,7 @@ TEST_F(ObjCStyleF, Allman)
 	char options[] = "style=allman";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Java)
@@ -130,7 +130,7 @@ TEST_F(ObjCStyleF, Java)
 	char options[] = "style=java";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, KR)
@@ -165,7 +165,7 @@ TEST_F(ObjCStyleF, KR)
 	char options[] = "style=kr";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Stroustrup)
@@ -200,7 +200,7 @@ TEST_F(ObjCStyleF, Stroustrup)
 	char options[] = "style=stroustrup, indent=spaces=5";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Whitesmith)
@@ -237,7 +237,7 @@ TEST_F(ObjCStyleF, Whitesmith)
 	char options[] = "style=whitesmith";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, VTK)
@@ -306,7 +306,7 @@ TEST_F(ObjCStyleF, Banner)
 	char options[] = "style=banner";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Gnu)
@@ -343,7 +343,7 @@ TEST_F(ObjCStyleF, Gnu)
 	char options[] = "style=gnu, indent=spaces=2";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Linux)
@@ -378,7 +378,7 @@ TEST_F(ObjCStyleF, Linux)
 	char options[] = "style=linux, indent=spaces=8";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Horstmann)
@@ -410,7 +410,7 @@ TEST_F(ObjCStyleF, Horstmann)
 	char options[] = "style=horstmann, indent=spaces=3";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, 1TBS)
@@ -445,7 +445,7 @@ TEST_F(ObjCStyleF, 1TBS)
 	char options[] = "style=1tbs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Google)
@@ -477,7 +477,42 @@ TEST_F(ObjCStyleF, Google)
 	char options[] = "style=google";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
+}
+
+TEST_F(ObjCStyleF, Mozilla)
+{
+	// test mozilla style option
+	char text[] =
+	    "\n@interface Foo : NSObject\n"
+	    "{\n"
+	    "    NSString* var1;\n"
+	    "    NSString* var2;\n"
+	    "}\n"
+	    "@end\n"
+	    "\n"
+	    "@implementation Foo\n"
+	    "\n"
+	    "- (void) foo\n"
+	    "{\n"
+	    "    if (isFoo) {\n"
+	    "        bar();\n"
+	    "    }\n"
+	    "}\n"
+	    "\n"
+	    "- (void) foo : (int) icon\n"
+	    "    ofSize : (int) size\n"
+	    "{\n"
+	    "    if (isFoo) {\n"
+	    "        bar();\n"
+	    "    }\n"
+	    "}\n"
+	    "\n"
+	    "@end\n";
+	char options[] = "style=mozilla";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Pico)
@@ -504,7 +539,7 @@ TEST_F(ObjCStyleF, Pico)
 	char options[] = "style=pico";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST_F(ObjCStyleF, Lisp)
@@ -531,7 +566,7 @@ TEST_F(ObjCStyleF, Lisp)
 	char options[] = "style=lisp";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 //-------------------------------------------------------------------------
@@ -560,7 +595,7 @@ TEST(ObjCPadMethodPrefix, LongOption)
 	char options[] = "pad-method-prefix";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodPrefix, ShortOption)
@@ -585,7 +620,7 @@ TEST(ObjCPadMethodPrefix, ShortOption)
 	char options[] = "-xQ";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodPrefix, UnPadMethodPrefix)
@@ -611,7 +646,7 @@ TEST(ObjCPadMethodPrefix, UnPadMethodPrefix)
 	char options[] = "pad-method-prefix, unpad-method-prefix";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodPrefix, SansPadUnPad)
@@ -629,7 +664,7 @@ TEST(ObjCPadMethodPrefix, SansPadUnPad)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodPrefix, Comments)
@@ -710,7 +745,7 @@ TEST(ObjCUnPadMethodPrefix, LongOption)
 	char options[] = "unpad-method-prefix";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCUnPadMethodPrefix, ShortOption)
@@ -735,7 +770,7 @@ TEST(ObjCUnPadMethodPrefix, ShortOption)
 	char options[] = "-xR";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCUnPadMethodPrefix, Comments)
@@ -767,6 +802,7 @@ TEST(ObjCUnPadMethodPrefix, Comments)
 TEST(ObjCUnPadMethodPrefix, PadParenOutComments)
 {
 	// Test unpad method prefix with pad-paren-out.
+	// Unpad method prefix has precedence over pad-paren-out.
 	// The comment alignment should be maintained.
 	char textIn[] =
 	    "\n"
@@ -907,7 +943,7 @@ TEST(ObjCPadReturnType, Comments)
 
 TEST(ObjCPadReturnType, PadParenOutComments)
 {
-	// Test pad return type with pad-paren-out.
+	// Test pad return type with comments and pad-paren-out.
 	// The comment alignment should be maintained.
 	char textIn[] =
 	    "\n"
@@ -1006,6 +1042,7 @@ TEST(ObjCUnPadReturnType, Comments)
 TEST(ObjCUnPadReturnType, PadParenOutComments)
 {
 	// Test unpad return type with pad-paren-out.
+	// Unpad return type has precedence over pad-paren-out.
 	// The comment alignment should be maintained.
 	char textIn[] =
 	    "\n"
@@ -1028,6 +1065,494 @@ TEST(ObjCUnPadReturnType, PadParenOutComments)
 }
 
 //-------------------------------------------------------------------------
+// AStyle Objective-C Pad Parameter Type
+//-------------------------------------------------------------------------
+
+TEST(ObjCPadParamType, LongOption)
+{
+	// Test pad param type long option.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;\n"
+	    "-(void)foo2: (bool) barArg2;\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3\n"
+	    "{ }";
+	char options[] = "pad-param-type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, ShortOption)
+{
+	// Test pad param type short option.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;\n"
+	    "-(void)foo2: (bool) barArg2;\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3\n"
+	    "{ }";
+	char options[] = "-xS";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, UnPadParamType)
+{
+	// Test objective-c with pad-param-type and unpad-param-type.
+	// The result should be pad-param-type.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;\n"
+	    "-(void)foo2: (bool) barArg2;\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3\n"
+	    "{ }";
+	char options[] = "pad-param-type, unpad-param-type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, SansPadUnPad)
+{
+	// Test objective-c with no param type option.
+	// The result should be no change.
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, Comments)
+{
+	// Test pad param type with comments.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;     // comment\n"
+	    "-(void)foo2: (bool) barArg2;     /* comment */\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3      // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadParenOut_Comments)
+{
+	// Test pad param type with comments and pad-paren-out.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "- (void) foo1: (bool) barArg1;   // comment\n"
+	    "- (void) foo2: (bool) barArg2;   /* comment */\n"
+	    "\n"
+	    "- (void) foo3: (bool) barArg3    // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-paren-out";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadParenIn_Comments)
+{
+	// Test pad-param-type with comments and pad-paren-in.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-( void )foo1: ( bool ) barArg1; // comment\n"
+	    "-( void )foo2: ( bool ) barArg2; /* comment */\n"
+	    "\n"
+	    "-( void )foo3: ( bool ) barArg3  // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-paren-in";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadParen_Comments)
+{
+	// Test pad-param-type with comments and pad-paren.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;         // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;    /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3        // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "- ( void ) foo1: ( bool ) barArg1; // comment\n"
+	    "- ( void ) foo2: ( bool ) barArg2; /* comment */\n"
+	    "\n"
+	    "- ( void ) foo3: ( bool ) barArg3  // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-paren";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadMethodColonNone_Comments)
+{
+	// Test pad-param-type with comments and pad-method-colon=none.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;     // comment\n"
+	    "-(void)foo2: (bool) barArg2;     /* comment */\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3      // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-method-colon=none";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadMethodColonAfter_Comments)
+{
+	// Test pad-param-type with comments and pad-method-colon=after.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool) barArg1;     // comment\n"
+	    "-(void)foo2: (bool) barArg2;     /* comment */\n"
+	    "\n"
+	    "-(void)foo3: (bool) barArg3      // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-method-colon=after";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadMethodColonBefore_Comments)
+{
+	// Test pad-param-type with comments and pad-method-colon=before.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1 : (bool) barArg1;    // comment\n"
+	    "-(void)foo2 : (bool) barArg2;    /* comment */\n"
+	    "\n"
+	    "-(void)foo3 : (bool) barArg3     // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-method-colon=before";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCPadParamType, PadMethodColonAll_Comments)
+{
+	// Test pad-param-type with comments and pad-method-colon=all.
+	// This will cause a padded method colon after.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1 : (bool) barArg1;    // comment\n"
+	    "-(void)foo2 : (bool) barArg2;    /* comment */\n"
+	    "\n"
+	    "-(void)foo3 : (bool) barArg3     // comment\n"
+	    "{ }";
+	char options[] = "pad-param-type, pad-method-colon=all";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+//-------------------------------------------------------------------------
+// AStyle Objective-C UnPad Parameter Type
+//-------------------------------------------------------------------------
+
+TEST(ObjCUnPadParamType, LongOption)
+{
+	// Test pad param type long option.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:(bool)barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)barArg3\n"
+	    "{ }";
+	char options[] = "unpad-param-type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, ShortOption)
+{
+	// Test pad param type short option.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:    (bool)    barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)    barArg3\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;\n"
+	    "-(void)foo2:(bool)barArg2;\n"
+	    "\n"
+	    "-(void)foo3:(bool)barArg3\n"
+	    "{ }";
+	char options[] = "-xs";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, Comments)
+{
+	// Test unpad param type with comments.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:(bool)barArg2;       /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)barArg3        // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, PadParenOut_Comments)
+{
+	// Test unpad param type with comments and pad-paren-out.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "- (void) foo1:(bool)barArg1;     // comment\n"
+	    "- (void) foo2:(bool)barArg2;     /* comment */\n"
+	    "\n"
+	    "- (void) foo3:(bool)barArg3      // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type, pad-paren-out";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, PadMethodColonNone_Comments)
+{
+	// Test unpad-param-type with comments and pad-method-colon=none.
+	// This will cause an unpadded method colon.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:(bool)barArg2;       /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)barArg3        // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type, pad-method-colon=none";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, PadMethodColonAfter_Comments)
+{
+	// Test unpad-param-type with comments and pad-method-colon=after.
+	// This will cause a padded method colon.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1: (bool)barArg1;      // comment\n"
+	    "-(void)foo2: (bool)barArg2;      /* comment */\n"
+	    "\n"
+	    "-(void)foo3: (bool)barArg3       // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type, pad-method-colon=after";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, PadMethodColonBefore_Comments)
+{
+	// Test unpad-param-type with comments and pad-method-colon=before.
+	// This will cause an unpadded method colon.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1 :(bool)barArg1;      // comment\n"
+	    "-(void)foo2 :(bool)barArg2;      /* comment */\n"
+	    "\n"
+	    "-(void)foo3 :(bool)barArg3       // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type, pad-method-colon=before";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCUnPadParamType, PadMethodColonAll_Comments)
+{
+	// Test unpad-param-type with comments and pad-method-colon=all.
+	// This will cause a padded method colon.
+	// The comment alignment should be maintained.
+	char textIn[] =
+	    "\n"
+	    "-(void)foo1:(bool)barArg1;       // comment\n"
+	    "-(void)foo2:  (bool)   barArg2;  /* comment */\n"
+	    "\n"
+	    "-(void)foo3:(bool)  barArg3      // comment\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "-(void)foo1 : (bool)barArg1;     // comment\n"
+	    "-(void)foo2 : (bool)barArg2;     /* comment */\n"
+	    "\n"
+	    "-(void)foo3 : (bool)barArg3      // comment\n"
+	    "{ }";
+	char options[] = "unpad-param-type, pad-method-colon=all";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+//-------------------------------------------------------------------------
 // AStyle Objective-C Pad Method Colon
 //-------------------------------------------------------------------------
 
@@ -1044,7 +1569,7 @@ TEST(ObjCPadMethodColon, NoOption)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LongOptionNone)
@@ -1065,7 +1590,7 @@ TEST(ObjCPadMethodColon, LongOptionNone)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LongOptionAll)
@@ -1086,7 +1611,7 @@ TEST(ObjCPadMethodColon, LongOptionAll)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LongOptionAfter)
@@ -1107,7 +1632,7 @@ TEST(ObjCPadMethodColon, LongOptionAfter)
 	char options[] = "pad-method-colon=after";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LongOptionBefore)
@@ -1128,7 +1653,7 @@ TEST(ObjCPadMethodColon, LongOptionBefore)
 	char options[] = "pad-method-colon=before";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ShortOptionNone)
@@ -1149,7 +1674,7 @@ TEST(ObjCPadMethodColon, ShortOptionNone)
 	char options[] = "-xP0";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ShortOptionAll)
@@ -1170,7 +1695,7 @@ TEST(ObjCPadMethodColon, ShortOptionAll)
 	char options[] = "-xP1";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ShortOptionAfter)
@@ -1191,7 +1716,7 @@ TEST(ObjCPadMethodColon, ShortOptionAfter)
 	char options[] = "-xP2";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ShortOptionBefore)
@@ -1212,7 +1737,7 @@ TEST(ObjCPadMethodColon, ShortOptionBefore)
 	char options[] = "-xP3";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, MultipleSpacesNone)
@@ -1228,7 +1753,7 @@ TEST(ObjCPadMethodColon, MultipleSpacesNone)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, MultipleSpacesAll)
@@ -1244,7 +1769,7 @@ TEST(ObjCPadMethodColon, MultipleSpacesAll)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LimitsNone)
@@ -1266,16 +1791,16 @@ TEST(ObjCPadMethodColon, LimitsNone)
 	    "\n-(void)readHeader\n"
 	    "{\n"
 	    "    NSData *data = [file dataOfLength\n"
-	    "                    :HEADLEN\n"
-	    "                    atOffset:\n"
-	    "                    [NSNumber numberWithUnsignedLong\n"
-	    "                     :\n"
-	    "                     0L]];\n"
+	    "                         :HEADLEN\n"
+	    "                         atOffset:\n"
+	    "                         [NSNumber numberWithUnsignedLong\n"
+	    "                          :\n"
+	    "                          0L]];\n"
 	    "}";
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, LimitsAll)
@@ -1297,16 +1822,16 @@ TEST(ObjCPadMethodColon, LimitsAll)
 	    "\n-(void)readHeader\n"
 	    "{\n"
 	    "    NSData *data = [file dataOfLength\n"
-	    "                    : HEADLEN\n"
-	    "                    atOffset :\n"
-	    "                    [NSNumber numberWithUnsignedLong\n"
-	    "                     :\n"
-	    "                     0L]];\n"
+	    "                         : HEADLEN\n"
+	    "                         atOffset :\n"
+	    "                         [NSNumber numberWithUnsignedLong\n"
+	    "                          :\n"
+	    "                          0L]];\n"
 	    "}";
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, SingleCharFollowsNone)
@@ -1333,7 +1858,7 @@ TEST(ObjCPadMethodColon, SingleCharFollowsNone)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, SingleCharFollowsAll)
@@ -1360,7 +1885,7 @@ TEST(ObjCPadMethodColon, SingleCharFollowsAll)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, EndOfLineFollowsNone)
@@ -1377,12 +1902,12 @@ TEST(ObjCPadMethodColon, EndOfLineFollowsNone)
 	    "\nvoid Foo()\n"
 	    "{\n"
 	    "    [(NSMutableData *)data appendData:\n"
-	    "     [handle readDataOfLength:nbytes]];\n"
+	    "                           [handle readDataOfLength:nbytes]];\n"
 	    "}";
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, EndOfLineFollowsAll)
@@ -1399,12 +1924,12 @@ TEST(ObjCPadMethodColon, EndOfLineFollowsAll)
 	    "\nvoid Foo()\n"
 	    "{\n"
 	    "    [(NSMutableData *)data appendData :\n"
-	    "     [handle readDataOfLength : nbytes]];\n"
+	    "                           [handle readDataOfLength : nbytes]];\n"
 	    "}";
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, NoneComment)
@@ -1508,7 +2033,7 @@ TEST(ObjCPadMethodColon, Selector)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ParenFollowsNone)
@@ -1528,7 +2053,7 @@ TEST(ObjCPadMethodColon, ParenFollowsNone)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ParenFollowsAll)
@@ -1548,7 +2073,7 @@ TEST(ObjCPadMethodColon, ParenFollowsAll)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ParenFollowsAfter)
@@ -1568,7 +2093,7 @@ TEST(ObjCPadMethodColon, ParenFollowsAfter)
 	char options[] = "pad-method-colon=after";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ParenFollowsBefore)
@@ -1588,7 +2113,7 @@ TEST(ObjCPadMethodColon, ParenFollowsBefore)
 	char options[] = "pad-method-colon=before";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, QuestionColon1)
@@ -1608,7 +2133,7 @@ TEST(ObjCPadMethodColon, QuestionColon1)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, QuestionColon2)
@@ -1629,7 +2154,7 @@ TEST(ObjCPadMethodColon, QuestionColon2)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, QuestionColon3)
@@ -1650,7 +2175,7 @@ TEST(ObjCPadMethodColon, QuestionColon3)
 	char options[] = "pad-method-colon=none";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, ScopeResolution)
@@ -1668,7 +2193,7 @@ TEST(ObjCPadMethodColon, ScopeResolution)
 	char options[] = "pad-method-colon=all";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCPadMethodColon, CSharpFile)
@@ -1690,14 +2215,14 @@ TEST(ObjCPadMethodColon, CSharpFile)
 	char options[] = "pad-method-colon=all, mode=cs";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 //-------------------------------------------------------------------------
-// AStyle Objective-C Align Method Colon
+// AStyle Objective-C Align Method Colon for Method Definition
 //-------------------------------------------------------------------------
 
-TEST(ObjCAlignMethodColon, LongOption)
+TEST(ObjCAlignMethodColonDef, LongOption)
 {
 	// Test align-method-colon long option.
 	char text[] =
@@ -1711,7 +2236,7 @@ TEST(ObjCAlignMethodColon, LongOption)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, ShortOption)
+TEST(ObjCAlignMethodColonDef, ShortOption)
 {
 	// Test align-method-colon short option.
 	char text[] =
@@ -1725,7 +2250,7 @@ TEST(ObjCAlignMethodColon, ShortOption)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, Headers)
+TEST(ObjCAlignMethodColonDef, Headers)
 {
 	// Test align-method-colon headers.
 	char text[] =
@@ -1747,9 +2272,9 @@ TEST(ObjCAlignMethodColon, Headers)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, MethodsBreak)
+TEST(ObjCAlignMethodColonDef, MethodsBreak)
 {
-	// Test align-method-colon methods with broken brackets.
+	// Test align-method-colon methods with broken braces.
 	char text[] =
 	    "\n"
 	    "- (BOOL)tableView:(NSTableView *)tableView\n"
@@ -1772,9 +2297,9 @@ TEST(ObjCAlignMethodColon, MethodsBreak)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, MethodsAttach)
+TEST(ObjCAlignMethodColonDef, MethodsAttach)
 {
-	// Test align-method-colon methods with attached brackets.
+	// Test align-method-colon methods with attached braces.
 	char text[] =
 	    "\n"
 	    "- (BOOL)tableView:(NSTableView *)tableView\n"
@@ -1797,10 +2322,10 @@ TEST(ObjCAlignMethodColon, MethodsAttach)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, MethodsAttachToLongest)
+TEST(ObjCAlignMethodColonDef, MethodsAttachToLongest)
 {
-	// Test align-method-colon methods with attached brackets.
-	// Attached bracket is the longest line.
+	// Test align-method-colon methods with attached braces.
+	// Attached brace is the longest line.
 	char text[] =
 	    "\n"
 	    "- (void)short : (GTMFoo *)theFoo\n"
@@ -1814,7 +2339,7 @@ TEST(ObjCAlignMethodColon, MethodsAttachToLongest)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, MultiLineDefinition)
+TEST(ObjCAlignMethodColonDef, MultiLineDefinition)
 {
 	// Test align-method-colon methods with multi-line definition.
 	// Semicolon is the longest line.
@@ -1830,7 +2355,7 @@ TEST(ObjCAlignMethodColon, MultiLineDefinition)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, Define1)
+TEST(ObjCAlignMethodColonDef, Define1)
 {
 	// Test align-method-colon methods with a define.
 	// The define should not be formatted.
@@ -1848,7 +2373,7 @@ TEST(ObjCAlignMethodColon, Define1)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, Define2)
+TEST(ObjCAlignMethodColonDef, Define2)
 {
 	// Test align-method-colon methods with an indented define.
 	// The define should be formatted correctly.
@@ -1874,7 +2399,7 @@ TEST(ObjCAlignMethodColon, Define2)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, PadMethodColonNone)
+TEST(ObjCAlignMethodColonDef, PadMethodColonNone)
 {
 	// Test align-method-colon with pad-method-colon=none.
 	char textIn[] =
@@ -1895,7 +2420,7 @@ TEST(ObjCAlignMethodColon, PadMethodColonNone)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, PadMethodColonAll)
+TEST(ObjCAlignMethodColonDef, PadMethodColonAll)
 {
 	// Test align-method-colon with pad-method-colon=all.
 	char textIn[] =
@@ -1916,7 +2441,7 @@ TEST(ObjCAlignMethodColon, PadMethodColonAll)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, PadMethodColonAfter)
+TEST(ObjCAlignMethodColonDef, PadMethodColonAfter)
 {
 	// Test align-method-colon with pad-method-colon=after.
 	char textIn[] =
@@ -1937,7 +2462,7 @@ TEST(ObjCAlignMethodColon, PadMethodColonAfter)
 	delete[] textOut;
 }
 
-TEST(ObjCAlignMethodColon, PadMethodColonBefore)
+TEST(ObjCAlignMethodColonDef, PadMethodColonBefore)
 {
 	// Test align-method-colon with pad-method-colon=before.
 	char textIn[] =
@@ -1958,13 +2483,541 @@ TEST(ObjCAlignMethodColon, PadMethodColonBefore)
 	delete[] textOut;
 }
 
+TEST(ObjCAlignMethodColonDef, LineContainsTabs)
+{
+	// Align method definition with embedded tabs.
+	char text[] =
+	    "\n"
+	    "-	(BOOL)	openAppFile: (NSString*)fullPath\n"
+	    "        withApplication: (NSString*)appname\n"
+	    "          andDeactivate: (BOOL)flag {\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+//-------------------------------------------------------------------------
+// AStyle Objective-C Align Method Colon for Method Call
+//-------------------------------------------------------------------------
+
+TEST(ObjCAlignMethodColonCall, LongOption)
+{
+	// Test align-method-colon long option.
+	char text[] =
+	    "\n"
+	    "-(void)Foo\n"
+	    "{\n"
+	    "    [myObj methodCall:arg1\n"
+	    "                 key2:arg2\n"
+	    "             keyword3:arg3\n"
+	    "                error:arg4];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, ShortOption)
+{
+	// Test align-method-colon short option.
+	char text[] =
+	    "\n"
+	    "-(void)Foo\n"
+	    "{\n"
+	    "    [myObj methodCall:arg1\n"
+	    "                 key2:arg2\n"
+	    "             keyword3:arg3\n"
+	    "                error:arg4];\n"
+	    "}";
+	char options[] = "-xM";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, AlignToLongest)
+{
+	// Test align-method-colon with a long arg.
+	char text[] =
+	    "\n"
+	    "-(void)Foo\n"
+	    "{\n"
+	    "    [myObj short:arg1\n"
+	    "              longKeyword:arg2\n"
+	    "        evenLongerKeyword:arg3\n"
+	    "                    error:arg4];\n"
+	    "}\n";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, NoColonOnLine1)
+{
+	// Test methods with no colon on line1.
+	// Should align on longest colon.
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(int)row\n"
+	    "{\n"
+	    "    [[NSNotificationCenter default Center]\n"
+	    "                   object:self\n"
+	    "     postNotificationName:myNotification\n"
+	    "                 userinfo:nil];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, NoKeywordOnLine1)
+{
+	// Test methods with no keyword on line1.
+	// Should align on the object.
+	char text[] =
+	    "\n"
+	    "void foo()\n"
+	    "{\n"
+	    "    NSArray*  eqParts = [equation\n"
+	    "                         componentsSeparatedByCharactersInSet:\n"
+	    "                         [NSCharacterSet whitespaceCharacterSet]];\n"
+	    "    Employee* joeBlow = [[Employee alloc]\n"
+	    "                         firstName:@\"Joe\"\n"
+	    "                          lastname:@\"Blow\"\n"
+	    "                         birthDate:\n"
+	    "                               ssn:@\"555-12-1212\"];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, MethodAssignment1)
+{
+	// Test align-method-colon in an assignment.
+	char text[] =
+	    "\n-(void) Foo\n"
+	    "{\n"
+	    "    NSDateComponents* components = [calendar components:(NSYearCalendarUnit)\n"
+	    "                                               fromDate:today];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	ASSERT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, MethodAssignment2)
+{
+	// Test align-method-colon in an assignment with a continuation.
+	char text[] =
+	    "\n"
+	    "void Foo()\n"
+	    "{\n"
+	    "    NSString* homeDirectory =\n"
+	    "        [NSString stringWithCString: homeDirectoryChar\n"
+	    "                           encoding: [NSString defaultCStringEncoding]];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	ASSERT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, MethodAssignment3)
+{
+	// Test align-method-colon in an assignment with run-in braces and continuation.
+	char text[] =
+	    "\n"
+	    "void Foo()\n"
+	    "{   NSString* homeDirectory =\n"
+	    "        [NSString stringWithCString: homeDirectoryChar\n"
+	    "                           encoding: [NSString defaultCStringEncoding]];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	ASSERT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, ColonAtEnd1)
+{
+	// The colon is at end of line .
+	char text[] =
+	    "\nvoid Foo()\n"
+	    "{\n"
+	    "    [(NSMutableData *)data appendData :\n"
+	    "                           nSMutableDataBytes\n"
+	    "                     readDataOfLength : nbytes];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, ColonAtEnd2)
+{
+	// The colon is at end of line with following object.
+	char text[] =
+	    "\nvoid Foo()\n"
+	    "{\n"
+	    "    [(NSMutableData *)data appendData :\n"
+	    "                           [handle readDataOfLength : nbytes]];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, ColonAtEnd3)
+{
+	// The colon is at end of line with following object.
+	char text[] =
+	    "\n"
+	    "void Foo()\n"
+	    "{\n"
+	    "    nextEvent = [[self window] nextEventMatchingMask:\n"
+	    "                               NSLeftMouseUpMask | NSLeftMouseDraggedMask];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, RunInBraces1)
+{
+	// Align with run-in braces.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{   NSString* textIn = [NSString contentsOfFile: filePath\n"
+	    "                                       encoding: NSASCIIStringEncoding\n"
+	    "                                          error: NULL];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, RunInBraces2)
+{
+	// Align with run-in braces.
+	// When a method call follows a method definition the variables
+	// must be cleared.
+	char text[] =
+	    "\n"
+	    "-(void)longKeyword:(GTMFoo *)theFoo\n"
+	    "           keyword:(float)theInterval\n"
+	    "             error:(NSError **)theError\n"
+	    "{   [myObj longKeyword:arg1\n"
+	    "               keyword:arg3\n"
+	    "                 error:arg4];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, AttachedBraces)
+{
+	// Align with attached braces.
+	// When a method call follows a method definition the variables
+	// must be cleared.
+	char text[] =
+	    "\n"
+	    "-(void)longKeyword:(GTMFoo *)theFoo\n"
+	    "           keyword:(float)theInterval\n"
+	    "             error:(NSError **)theError {\n"
+	    "    [myObj longKeyword:arg1\n"
+	    "               keyword:arg3\n"
+	    "                 error:arg4];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, RunInBracesTabs1)
+{
+	// Align with run-in braces and tabbed indents.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{	NSString* textIn = [NSString contentsOfFile: filePath\n"
+	    "	                                   encoding: NSASCIIStringEncoding\n"
+	    "	                                      error: NULL];\n"
+	    "}";
+	char options[] = "align-method-colon, indent=tab";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, RunInBracesTabs2)
+{
+	// Align with run-in braces and tabbed indents with embedded tabs.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{	NSString* textIn =	[NSString	contentsOfFile: filePath\n"
+	    "	                                      encoding: NSASCIIStringEncoding\n"
+	    "	                                         error: NULL];\n"
+	    "}";
+	char options[] = "align-method-colon, indent=tab";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCAlignMethodColonCall, InStatementValue)
+{
+	// Align with parens in a value computation.
+	char text[] =
+	    "\n"
+	    "-(void) Foo\n"
+	    "{\n"
+	    "    NSDateComponents* components =\n"
+	    "        [calendar components:(NSYearCalendarUnit |\n"
+	    "                              NSMonthCalendarUnit |\n"
+	    "                              NSDayCalendarUnit)\n"
+	    "                    fromDate:today];\n"
+	    "}";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+//-------------------------------------------------------------------------
+// AStyle Objective-C WITHOUT Align Method Colon for Method Call
+//-------------------------------------------------------------------------
+
+TEST(ObjCSansAlignMethodColonCall, DefaultAlignment)
+{
+	// Test default alignment.
+	char text[] =
+	    "\n"
+	    "-(void)Foo\n"
+	    "{\n"
+	    "    [myObj methodCall:arg1\n"
+	    "           key2:arg2\n"
+	    "           keyword3:arg3\n"
+	    "           error:arg4];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, AlignToLongest)
+{
+	// Test default alignment with a long arg.
+	char text[] =
+	    "\n"
+	    "-(void)Foo\n"
+	    "{\n"
+	    "    [myObj short:arg1\n"
+	    "           longKeyword:arg2\n"
+	    "           evenLongerKeyword:arg3\n"
+	    "           error:arg4];\n"
+	    "}\n";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, NoColonOnLine1)
+{
+	// Test default alignment with no colon on line1.
+	// Should align on longest colon.
+	char text[] =
+	    "\n"
+	    "-(void)foo1:(int)row\n"
+	    "{\n"
+	    "    [[NSNotificationCenter default Center]\n"
+	    "     object:self\n"
+	    "     postNotificationName:myNotification\n"
+	    "     userinfo:nil];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, NoKeywordOnLine1)
+{
+	// Test default alignment with no keyword on line1.
+	// Should align on the object.
+	char text[] =
+	    "\n"
+	    "void foo()\n"
+	    "{\n"
+	    "    NSArray*  eqParts = [equation\n"
+	    "                         componentsSeparatedByCharactersInSet:\n"
+	    "                         [NSCharacterSet whitespaceCharacterSet]];\n"
+	    "    Employee* joeBlow = [[Employee alloc]\n"
+	    "                         firstName:@\"Joe\"\n"
+	    "                         lastname:@\"Blow\"\n"
+	    "                         birthDate:\n"
+	    "                         ssn:@\"555-12-1212\"];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, MethodAssignment)
+{
+	// Test default alignment in an assignment.
+	char text[] =
+	    "\n-(void) Foo\n"
+	    "{\n"
+	    "    NSDateComponents* components = [calendar components:(NSYearCalendarUnit)\n"
+	    "                                             fromDate:today];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	ASSERT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, ColonAtEnd1)
+{
+	// The default alignment with colon at end of line .
+	char text[] =
+	    "\nvoid Foo()\n"
+	    "{\n"
+	    "    [(NSMutableData *)data appendData :\n"
+	    "                           nSMutableDataBytes\n"
+	    "                           readDataOfLength : nbytes];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, ColonAtEnd2)
+{
+	// The colon is at end of line with following object.
+	char text[] =
+	    "\nvoid Foo()\n"
+	    "{\n"
+	    "    [(NSMutableData *)data appendData :\n"
+	    "                           [handle readDataOfLength : nbytes]];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, ColonAtEnd3)
+{
+	// The colon is at end of line with following object.
+	char text[] =
+	    "\n"
+	    "void Foo()\n"
+	    "{\n"
+	    "    nextEvent = [[self window] nextEventMatchingMask:\n"
+	    "                               NSLeftMouseUpMask | NSLeftMouseDraggedMask];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, RunInBraces)
+{
+	// Align with run-in braces.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{   NSString* textIn = [NSString contentsOfFile: filePath\n"
+	    "                                 encoding: NSASCIIStringEncoding\n"
+	    "                                 error: NULL];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, RunInBracesTabs1)
+{
+	// Align with run-in braces and tabbed indents.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{	NSString* textIn = [NSString contentsOfFile: filePath\n"
+	    "	                             encoding: NSASCIIStringEncoding\n"
+	    "	                             error: NULL];\n"
+	    "}";
+	char options[] = "indent=tab";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, RunInBracesTabs2)
+{
+	// Align with run-in braces and tabbed indents with embedded tabs.
+	char text[] =
+	    "\n"
+	    "NSString* getText(NSString* filePath)\n"
+	    "{	NSString* textIn =	[NSString	contentsOfFile: filePath\n"
+	    "	                                encoding: NSASCIIStringEncoding\n"
+	    "	                                error: NULL];\n"
+	    "}";
+	char options[] = "indent=tab";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
+TEST(ObjCSansAlignMethodColonCall, InStatementValue)
+{
+	// Align with parens in a value computation.
+	char text[] =
+	    "\n"
+	    "-(void) Foo\n"
+	    "{\n"
+	    "    NSDateComponents* components =\n"
+	    "        [calendar components:(NSYearCalendarUnit |\n"
+	    "                              NSMonthCalendarUnit |\n"
+	    "                              NSDayCalendarUnit)\n"
+	    "                  fromDate:today];\n"
+	    "}";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
+}
+
 //-------------------------------------------------------------------------
 // AStyle Objective-C Other Tests
 //-------------------------------------------------------------------------
 
-TEST(ObjCOther, 1TBSAddBrackets)
+TEST(ObjCOther, 1TBSAddBraces)
 {
-	// test 1tbs style option with added brackets
+	// test 1tbs style option with added braces
 	char textIn[] =
 	    "\n@interface Foo : NSObject\n"
 	    "{\n"
@@ -2017,7 +3070,7 @@ TEST(ObjCOther, 1TBSAddBrackets)
 	char options[] = "style=1tbs";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, GoogleWithAccessModifiers)
@@ -2036,7 +3089,7 @@ TEST(ObjCOther, GoogleWithAccessModifiers)
 	char options[] = "style=google";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, GoogleWithMultilineInterface)
@@ -2052,7 +3105,7 @@ TEST(ObjCOther, GoogleWithMultilineInterface)
 	char options[] = "style=google";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, HeaderData)
@@ -2086,13 +3139,35 @@ TEST(ObjCOther, HeaderData)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
+}
+
+TEST(ObjCOther, SpacesBeforeDefinition)
+{
+	// test for spaces before the definition start
+	// data will break on colons if not recognized
+	char textIn[] =
+	    "\n"
+	    "       - (BOOL)tableView:(NSTableView *)tableView\n"
+	    "       acceptDrop:(id <NSDraggingInfo>)info\n"
+	    "              row:(int)row\n"
+	    "{ }";
+	char text[] =
+	    "\n"
+	    "- (BOOL)tableView:(NSTableView *)tableView\n"
+	    "       acceptDrop:(id <NSDraggingInfo>)info\n"
+	    "              row:(int)row\n"
+	    "{ }";
+	char options[] = "align-method-colon";
+	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
+	ASSERT_STREQ(text, textOut);
+	delete[] textOut;
 }
 
 TEST(ObjCOther, InterfaceContinuation1)
 {
 	// test an Objective-C header with continuation lines
-	// no bracket
+	// no brace
 	char text[] =
 	    "\n@interface Foo1 :\n"
 	    "    NSObject\n"
@@ -2104,13 +3179,13 @@ TEST(ObjCOther, InterfaceContinuation1)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, InterfaceContinuation2)
 {
 	// test google style option with a multi-line interface
-	// attached bracket
+	// attached brace
 	char text[] =
 	    "\n@interface Foo1 :\n"
 	    "    NSObject {\n"
@@ -2124,13 +3199,13 @@ TEST(ObjCOther, InterfaceContinuation2)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, InterfaceContinuation3)
 {
 	// test google style option with a multi-line interface
-	// broken bracket
+	// broken brace
 	char text[] =
 	    "\n@interface Foo1 :\n"
 	    "    NSObject\n"
@@ -2146,7 +3221,22 @@ TEST(ObjCOther, InterfaceContinuation3)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
+}
+
+TEST(ObjCOther, InterfaceNoBraces)
+{
+	// test interface with no braces
+	char text[] =
+	    "\n"
+	    "@interface SettingsTableViewController () <iTunesFilesSelectionDelegate>\n"
+	    "@property (weak, nonatomic) IBOutlet UITableViewCell *dailyLimitCell;\n"
+	    "@property (weak, nonatomic) IBOutlet UITableViewCell *sendFeedbackCell;\n"
+	    "@end\n";
+	char options[] = "";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
 }
 
 TEST(ObjCOther, MethodCallIndent)
@@ -2157,12 +3247,12 @@ TEST(ObjCOther, MethodCallIndent)
 	    "{\n"
 	    "    NSString* homeDirectory = [NSString stringWithUTF8String: homeDirectoryChar];\n"
 	    "    NSString* projectPath = [NSString stringWithFormat: @\"%@/%@/%@\",\n"
-	    "                             homeDirectory, @\"Projects\", subPath];\n"
+	    "                                      homeDirectory, @\"Projects\", subPath];\n"
 	    "}";
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, NSExceptionMacros)
@@ -2175,7 +3265,7 @@ TEST(ObjCOther, NSExceptionMacros)
 	    "	NS_DURING\n"
 	    "	{\n"
 	    "		[[NSWorkspace sharedWorkspace] openFile: path\n"
-	    "		 withApplication: [node name]];\n"
+	    "		                               withApplication: [node name]];\n"
 	    "	}\n"
 	    "	NS_HANDLER\n"
 	    "	{\n"
@@ -2187,7 +3277,7 @@ TEST(ObjCOther, NSExceptionMacros)
 	char options[] = "indent=tab";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, OtherColonIndent)
@@ -2208,7 +3298,7 @@ TEST(ObjCOther, OtherColonIndent)
 	char options[] = "";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, MethodCallHeader)
@@ -2227,12 +3317,12 @@ TEST(ObjCOther, MethodCallHeader)
 	char options[] = "break-blocks";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, AutoreleasepoolBreak)
 {
-	// Precommand header autoreleasepoolwith broken brackets.
+	// Precommand header autoreleasepoolwith broken braces.
 	char text[] =
 	    "\nvirtual void foo()\n"
 	    "{\n"
@@ -2249,7 +3339,7 @@ TEST(ObjCOther, AutoreleasepoolBreak)
 
 TEST(ObjCOther, AutoreleasepoolAttach)
 {
-	// Precommand header autoreleasepoolwith attached brackets.
+	// Precommand header autoreleasepoolwith attached braces.
 	char textIn[] =
 	    "\nvirtual void foo()\n"
 	    "{\n"
@@ -2272,7 +3362,7 @@ TEST(ObjCOther, AutoreleasepoolAttach)
 
 TEST(ObjCOther, AutoreleasepoolKandR)
 {
-	// Precommand header autoreleasepoolwith K&R brackets.
+	// Precommand header autoreleasepoolwith K&R braces.
 	char textIn[] =
 	    "\nvirtual void foo()\n"
 	    "{\n"
@@ -2311,7 +3401,7 @@ TEST(ObjCOther, IndentClasses)
 	char options[] = "indent-classes";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, IndentModifiers)
@@ -2330,7 +3420,7 @@ TEST(ObjCOther, IndentModifiers)
 	char options[] = "indent-modifiers";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, InStatementIndent1)
@@ -2343,12 +3433,12 @@ TEST(ObjCOther, InStatementIndent1)
 	    "    NSDateComponents* components = [calendar components:(NSYearCalendarUnit |\n"
 	    "                                                         NSMonthCalendarUnit |\n"
 	    "                                                         NSDayCalendarUnit)\n"
-	    "                                    fromDate:today];\n"
+	    "                                             fromDate:today];\n"
 	    "}";
 	char options[] = "max-instatement-indent=60";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, InStatementIndent2)
@@ -2366,12 +3456,12 @@ TEST(ObjCOther, InStatementIndent2)
 	    "{\n"
 	    "    NSDateComponents* components = [calendar components:(NSYearCalendarUnit |\n"
 	    "                                                         NSDayCalendarUnit)\n"
-	    "                                    fromDate:today];\n"
+	    "                                             fromDate:today];\n"
 	    "}";
 	char options[] = "max-instatement-indent=60";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, AlignPointer)
@@ -2382,18 +3472,18 @@ TEST(ObjCOther, AlignPointer)
 	    "\nvoid foo()\n"
 	    "{\n"
 	    "    [icons sortUsingFunction: (int (*)(id, id, void*))compareWithExtType\n"
-	    "     context: (void*)NULL];\n"
+	    "           context: (void*)NULL];\n"
 	    "}";
 	char text[] =
 	    "\nvoid foo()\n"
 	    "{\n"
 	    "    [icons sortUsingFunction: (int (*)(id, id, void *))compareWithExtType\n"
-	    "     context: (void *)NULL];\n"
+	    "           context: (void *)NULL];\n"
 	    "}";
 	char options[] = "align-pointer=name";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadInterfaceColon1)
@@ -2418,7 +3508,7 @@ TEST(ObjCOther, PadInterfaceColon1)
 	char options[] = "";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadInterfaceColon2)
@@ -2443,7 +3533,7 @@ TEST(ObjCOther, PadInterfaceColon2)
 	char options[] = "";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	ASSERT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadOperator1)
@@ -2462,7 +3552,7 @@ TEST(ObjCOther, PadOperator1)
 	char options[] = "pad-oper";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadOperator2)
@@ -2478,7 +3568,7 @@ TEST(ObjCOther, PadOperator2)
 	char options[] = "pad-oper";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadOperator3)
@@ -2493,7 +3583,7 @@ TEST(ObjCOther, PadOperator3)
 	char options[] = "pad-oper";
 	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadOperator4)
@@ -2515,7 +3605,7 @@ TEST(ObjCOther, PadOperator4)
 	char options[] = "pad-oper";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
 }
 
 TEST(ObjCOther, PadOperator5)
@@ -2537,7 +3627,23 @@ TEST(ObjCOther, PadOperator5)
 	char options[] = "pad-oper";
 	char* textOut = AStyleMain(textIn, options, errorHandler, memoryAlloc);
 	EXPECT_STREQ(text, textOut);
-	delete [] textOut;
+	delete[] textOut;
+}
+
+TEST(ObjCOther, PadOperator6)
+{
+	// Test selector with pad-oper option.
+	// -1 should not be padded.
+	char text[] =
+	    "\n"
+	    "void Foo()\n"
+	    "{\n"
+	    "    port[1] = [portArray objectAtIndex:-1];\n"
+	    "}";
+	char options[] = "pad-oper";
+	char* textOut = AStyleMain(text, options, errorHandler, memoryAlloc);
+	EXPECT_STREQ(text, textOut);
+	delete[] textOut;
 }
 
 //----------------------------------------------------------------------------

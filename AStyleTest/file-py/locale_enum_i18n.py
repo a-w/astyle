@@ -6,11 +6,12 @@
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
-import libastyle        # local directory
 import locale
 import os
 import platform
 import sys
+# local libraries
+import libastyle
 
 # -----------------------------------------------------------------------------
 
@@ -18,41 +19,38 @@ def main():
     """Main processing function.
     """
     if os.name != "nt":
-        libastyle.system_exit("This script is for Windows only!")
-
+        libastyle.system_exit("\nThis script is for Windows only!")
     if platform.python_implementation() == "IronPython":
-        libastyle.system_exit("IronPython is not currently supported")
+        libastyle.system_exit("\nIronPython is not currently supported")
 
     libastyle.set_text_color("yellow")
     print(libastyle.get_python_version())
 
-    languages = (
-            # "chinese",                    # returns chinese-simplified
-            "chinese-simplified",
-            "chinese-traditional",
-            "czech",
-            "danish",
-            "dutch",
-            "belgian",
-            "english",
-            "finnish",
-            "french",
-            "german",
-            "greek",
-            "hungarian",
-            "icelandic",
-            "italian",
-            "japanese",
-            "korean",
-            "norwegian",
-            "polish",
-            "portuguese",
-            "russian",
-            "slovak",
-            "spanish",
-            "swedish",
-            "turkish",
-            )
+    # "chinese" returns chinese-simplified
+    languages = ("chinese-simplified",
+                 "chinese-traditional",
+                 "czech",
+                 "danish",
+                 "dutch",
+                 "belgian",
+                 "english",
+                 "finnish",
+                 "french",
+                 "german",
+                 "greek",
+                 "hungarian",
+                 "icelandic",
+                 "italian",
+                 "japanese",
+                 "korean",
+                 "norwegian",
+                 "polish",
+                 "portuguese",
+                 "russian",
+                 "slovak",
+                 "spanish",
+                 "swedish",
+                 "turkish")
 
     # build list of locale names
     locale_names = []

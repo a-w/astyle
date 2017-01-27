@@ -1,6 +1,6 @@
 // AStyleTestLin_Main.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 //----------------------------------------------------------------------------
@@ -30,11 +30,11 @@ int main(int argc, char** argv)
 	bool noClose = false;
 	for (int i = 1; i < argc; i++)
 	{
-		if (strcmp(argv[i], "--terse_output") == 0 )
+		if (strcmp(argv[i], "--terse_output") == 0)
 			useTerseOutput = true;
-		else if (strcmp(argv[i], "--no_close") == 0 )
+		else if (strcmp(argv[i], "--no_close") == 0)
 			noClose = true;
-		else if (strcmp(argv[i], "--gtest_color=no") == 0 )
+		else if (strcmp(argv[i], "--gtest_color=no") == 0)
 			useColor = false;
 	}
 	// do this after parsing the command line but before changing printer
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
 	// Change the following value to the number of tests (within 10).
 	TersePrinter::PrintTestTotals(20, __FILE__, __LINE__);
 
-#ifdef __WIN32
+#ifdef _WIN32
 	printf("%c", '\n');
 #endif
 	if (noClose)			// command line option
@@ -106,6 +106,6 @@ char* STDCALL memoryAlloc(unsigned long memoryNeeded)
 {
 	// error condition is checked after return from AStyleMain
 	// UnitTest++ will catch an allocation error
-	char* buffer = new(nothrow) char [memoryNeeded];
+	char* buffer = new (nothrow) char[memoryNeeded];
 	return buffer;
 }

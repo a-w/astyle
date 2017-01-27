@@ -106,7 +106,7 @@ def get_constructor_variables(class_variables, iterator_path):
             class_lines[0] = lines + 1
             continue
         if (class_lines[0] == 0
-        or class_lines[0] >= lines):
+                or class_lines[0] >= lines):
             continue
         # find ending bracket
         if '}' in line:
@@ -138,8 +138,8 @@ def get_header_variables(header_variables, header_path):
     """Read the header file and save the ASStreamIterator variables."""
 
     header_lines = [0, 0]		# line numbers for header
-    header_total = 0				# total variables for header
-    lines = 0						# current input line number
+    header_total = 0			# total variables for header
+    lines = 0					# current input line number
     file_in = open(header_path, 'r')
 
     for line_in in file_in:
@@ -155,7 +155,7 @@ def get_header_variables(header_variables, header_path):
             header_lines[0] = lines + 1
             continue
         if (header_lines[0] == 0
-        or header_lines[0] >= lines):
+                or header_lines[0] >= lines):
             continue
         # find ending bracket - should find following comment instead
         if '}' in line:
@@ -166,12 +166,11 @@ def get_header_variables(header_variables, header_path):
             header_lines[1] = lines
             break
         if ("public:" in line
-        or "private:" in line
-        or "protected:" in line):
+                or "private:" in line
+                or "protected:" in line):
             continue
         # bypass functions
-        if ('(' in line
-        or ')' in line):
+        if '(' in line or ')' in line:
             continue
         # bypass static variables
         if line[:6] == "static":
@@ -180,6 +179,8 @@ def get_header_variables(header_variables, header_path):
         if "buffer" in line:
             continue
         if "prevBuffer" in line:
+            continue
+        if "outputEOL" in line:
             continue
         # get the variable name
         semi_colon = line.find(';')

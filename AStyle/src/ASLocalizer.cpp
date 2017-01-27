@@ -1,10 +1,10 @@
 // ASLocalizer.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 //
-// File encoding for this file is UTF-8 WITHOUT a byte order mark(BOM).
-//  русский    中文（简体）    日本語    한국의
+// File encoding for this file is UTF-8 WITHOUT a byte order mark (BOM).
+//    русский     中文（简体）    日本語     한국의
 //
 // Windows:
 // Add the required "Language" to the system.
@@ -13,7 +13,7 @@
 // Change both the "Format" and the "Current Language..." settings.
 // A restart is required if the codepage has changed.
 //		Windows problems:
-//		Hindi    -no available locale, language pack removed
+//		Hindi    - no available locale, language pack removed
 //		Japanese - language pack install error
 //		Ukranian - displays a ? instead of i
 //
@@ -58,8 +58,8 @@
 
 #include <cstdio>
 #include <iostream>
-#include <locale.h>		// needed by some compilers
-#include <stdlib.h>
+#include <clocale>		// needed by some compilers
+#include <cstdlib>
 #include <typeinfo>
 
 #ifdef _MSC_VER
@@ -96,11 +96,11 @@ ASLocalizer::ASLocalizer()
 	m_langID = "en";
 	m_lcid = 0;
 	m_subLangID.clear();
-	m_translation = NULL;
+	m_translation = nullptr;
 
 	// Not all compilers support the C++ function locale::global(locale(""));
 	char* localeName = setlocale(LC_ALL, "");
-	if (localeName == NULL)		// use the english (ascii) defaults
+	if (localeName == nullptr)		// use the english (ascii) defaults
 	{
 		fprintf(stderr, "\n%s\n\n", "Cannot set native locale, reverting to English");
 		setTranslationClass();
@@ -225,16 +225,14 @@ void ASLocalizer::setLanguageFromName(const char* langID)
 //      de_DE.iso88591@euro
 {
 	// the constants describing the format of lang_LANG locale string
-	static const size_t LEN_LANG = 2;
-
 	m_lcid = 0;
 	string langStr = langID;
-	m_langID = langStr.substr(0, LEN_LANG);
+	m_langID = langStr.substr(0, 2);
 
 	// need the sublang for chinese
-	if (m_langID == "zh" && langStr[LEN_LANG] == '_')
+	if (m_langID == "zh" && langStr[2] == '_')
 	{
-		string subLang = langStr.substr(LEN_LANG + 1, LEN_LANG);
+		string subLang = langStr.substr(3, 2);
 		if (subLang == "CN" || subLang == "SG")
 			m_subLangID = "CHS";
 		else
@@ -258,10 +256,10 @@ void ASLocalizer::setTranslationClass()
 {
 	assert(m_langID.length());
 	// delete previously set (--ascii option)
-	if (m_translation)
+	if (m_translation != nullptr)
 	{
 		delete m_translation;
-		m_translation = NULL;
+		m_translation = nullptr;
 	}
 	if (m_langID == "bg")
 		m_translation = new Bulgarian;
@@ -329,8 +327,8 @@ string Translation::convertToMultiByte(const wstring& wideStr) const
 // Return an empty string if an error occurs.
 {
 	static bool msgDisplayed = false;
-	// get length of the output excluding the NULL and validate the parameters
-	size_t mbLen = wcstombs(NULL, wideStr.c_str(), 0);
+	// get length of the output excluding the nullptr and validate the parameters
+	size_t mbLen = wcstombs(nullptr, wideStr.c_str(), 0);
 	if (mbLen == string::npos)
 	{
 		if (!msgDisplayed)
@@ -341,8 +339,8 @@ string Translation::convertToMultiByte(const wstring& wideStr) const
 		return "";
 	}
 	// convert the characters
-	char* mbStr = new(nothrow) char[mbLen + 1];
-	if (mbStr == NULL)
+	char* mbStr = new (nothrow) char[mbLen + 1];
+	if (mbStr == nullptr)
 	{
 		if (!msgDisplayed)
 		{
@@ -354,7 +352,7 @@ string Translation::convertToMultiByte(const wstring& wideStr) const
 	wcstombs(mbStr, wideStr.c_str(), mbLen + 1);
 	// return the string
 	string mbTranslation = mbStr;
-	delete [] mbStr;
+	delete[] mbStr;
 	return mbTranslation;
 }
 
@@ -382,23 +380,22 @@ bool Translation::getWideTranslation(const string& stringIn, wstring& wideOut) c
 
 string& Translation::translate(const string& stringIn) const
 // Translate a string.
-// Return a static string instead of a member variable so the method can have a "const" designation.
+// Return a mutable string so the method can have a "const" designation.
 // This allows "settext" to be called from a "const" method.
 {
-	static string mbTranslation;
-	mbTranslation.clear();
+	m_mbTranslation.clear();
 	for (size_t i = 0; i < m_translation.size(); i++)
 	{
 		if (m_translation[i].first == stringIn)
 		{
-			mbTranslation = convertToMultiByte(m_translation[i].second);
+			m_mbTranslation = convertToMultiByte(m_translation[i].second);
 			break;
 		}
 	}
 	// not found, return english
-	if (mbTranslation.empty())
-		mbTranslation = stringIn;
-	return mbTranslation;
+	if (m_mbTranslation.empty())
+		m_mbTranslation = stringIn;
+	return m_mbTranslation;
 }
 
 //----------------------------------------------------------------------------

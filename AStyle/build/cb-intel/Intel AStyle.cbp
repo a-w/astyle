@@ -17,13 +17,10 @@
 					<Add option="-Wall" />
 					<Add option="-g" />
 					<Add option="-fno-exceptions" />
+					<Add option="-std=c++11" />
 					<Add option="-w3" />
 					<Add option="-Wextra" />
 				</Compiler>
-				<Linker>
-					<Add option="-static-intel" />
-					<Add option="-wd10237" />
-				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/astyle" prefix_auto="1" extension_auto="1" />
@@ -36,6 +33,7 @@
 					<Add option="-O3" />
 					<Add option="-Wall" />
 					<Add option="-fno-exceptions" />
+					<Add option="-std=c++11" />
 					<Add option="-w3" />
 					<Add option="-Wextra" />
 					<Add option="-wd11074,11076" />
@@ -43,8 +41,6 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-static-intel" />
-					<Add option="-wd10237" />
 				</Linker>
 			</Target>
 		</Build>

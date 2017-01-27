@@ -1,4 +1,4 @@
-﻿#! /usr/bin/python
+#! /usr/bin/python
 """ Run the AStyle regression test.
     Tests the output of a new program against an older one.
     Change the global variables to the desired values.
@@ -10,9 +10,6 @@
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
-import libastyle		# local directory
-import libextract		# local directory
-import libtest			# local directory
 import locale
 import glob
 import os
@@ -20,6 +17,10 @@ import shutil
 import stat
 import subprocess
 import time
+# local libraries
+import libastyle
+import libextract
+import libtest
 
 # global variables ------------------------------------------------------------
 
@@ -31,13 +32,14 @@ import time
 # SHARPDEVELOP      # C# - Compile on Windows only
 # SHARPMAIN         # C# - 1000 files from SharpDevelop
 # TESTPROJECT
-__project = libastyle.CODEBLOCKS
+__project = libastyle.SHARPMAIN
 
 # select OPT0 thru OPT3, or use customized options
-__options    = libastyle.OPT0
+# ADD xV TO LINASTYLE.PY OPTIONS **********************************
+__options = libastyle.OPT3
 
 # options_x are for BOTH executables
-__options_x  = ""
+__options_x = ""
 # options_x2 are for ONLY exe2 to test new options
 __options_x2 = ""
 
@@ -45,7 +47,7 @@ __options_x2 = ""
 #__options = "-tapOHUk3"
 
 # executables for test - astyleexe1 is old version, astyleexe2 is new version
-__astyleexe1 = "astyle26d"
+__astyleexe1 = "astyle26"
 __astyleexe2 = "astyle"
 
 # select one of the following to format files in the OLD directory
@@ -198,7 +200,7 @@ def get_astyle_config():
     """
     config = libastyle.DEBUG
     if (__astyleexe1.lower() == "astyle"
-    or __astyleexe2.lower() == "astyle"):
+            or __astyleexe2.lower() == "astyle"):
         config = libastyle.RELEASE
     return config
 
@@ -264,7 +266,8 @@ def print_run_header():
     print("Regression-2 Test for {0}".format(__project))
     if os.name == "nt":
         print("Using ({0}) {1} {2}".format(libastyle.VS_RELEASE,
-                __astyleexe1, __astyleexe2), end=" ")
+                                           __astyleexe1,
+                                           __astyleexe2), end=" ")
     else:
         print("Using {0} {1}".format(__astyleexe1, __astyleexe2), end=" ")
     if __options == libastyle.OPT0:
@@ -321,13 +324,13 @@ def set_astyle_args(filepath, excludes, astyleexe):
     for file_in in filepath:
         args.append(file_in)
     # set options
-    args.append("-vRQn")
+    args.append("-vRQ")
     if len(__options.strip()) > 0:
         args.append(__options)
     if len(__options_x.strip()) > 0:
         args.append(__options_x)
     if (astyleexe == __astyleexe2
-    and len(__options_x2.strip()) > 0):
+            and len(__options_x2.strip()) > 0):
         args.append(__options_x2)
     # set excludes
     for exclude in excludes:

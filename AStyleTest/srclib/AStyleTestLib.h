@@ -1,3 +1,8 @@
+// AStyleTestLib.h
+// Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
+// This code is licensed under the MIT License.
+// License.txt describes the conditions under which this software may be distributed.
+
 #ifndef ASTYLE_TESTLIB_H
 #define ASTYLE_TESTLIB_H
 
@@ -5,12 +10,8 @@
 // headers
 //-------------------------------------------------------------------------
 
-#include <gtest/gtest.h>
-#ifdef __BORLANDC__			// can't use gmock
-	#include "gtest/gtest.h"
-#else
-	#include "gmock/gmock.h"
-#endif
+#include "gmock/gmock.h"
+#include "gtest/gtest.h"
 // for gmock macros
 using namespace testing;
 

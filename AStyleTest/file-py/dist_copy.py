@@ -1,4 +1,4 @@
-﻿#! /usr/bin/python
+#! /usr/bin/python
 """ Create the distribution files for Artistic Style.
     Windows distribution is created on Windows.
     Linux distribution is created on Linux.
@@ -8,17 +8,23 @@
 from __future__ import print_function
 
 import glob
-import libastyle		# local directory
 import os
 import shutil
 import stat
 import subprocess
 import time
+# local libraries
+import libastyle
 
 # global variables ------------------------------------------------------------
 
 # release number for distribution file
-__release = "2.06"
+AS_RELEASE = "2.06"
+
+# extract all platforms for testing (Windows, Linux, Mac)
+EXTRACT_ALL = False
+#EXTRACT_ALL = True
+
 # inut from AStyle directory
 __astyle_dir = libastyle.get_astyle_directory()
 # output to Project directory
@@ -34,7 +40,11 @@ def main():
     os.chdir(libastyle.get_file_py_directory())
     remove_dist_directories()
     verify_localizer_signature()
-    if os.name == "nt":
+    if EXTRACT_ALL:
+        build_windows_distribution()
+        build_linux_distribution()
+        build_mac_distribution()
+    elif os.name == "nt":
         build_windows_distribution()
     else:
         build_linux_distribution()
@@ -74,7 +84,7 @@ def build_linux_distribution():
     copy_astyle_src(dist_src)
 
     # create tar.bz2
-    tarname = "astyle_{0}_linux.tar".format(__release)
+    tarname = "astyle_{0}_linux.tar".format(AS_RELEASE)
     call_7zip(dist_base, tarname)
     bz2name = tarname + ".gz"
     call_7zip(dist_base, bz2name)
@@ -88,7 +98,7 @@ def build_mac_distribution():
     print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
     print("*            Copying AStyle Mac Distribution            *")
     print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
-    print("Building release", __release)
+    print("Building release", AS_RELEASE)
     dist_base = __base_dir + "/DistMac"
     dist_astyle = dist_base + "/astyle"
     os.makedirs(dist_astyle)
@@ -113,7 +123,7 @@ def build_mac_distribution():
     copy_astyle_src(dist_src)
 
     # create tar.gz
-    tarname = "astyle_{0}_macosx.tar".format(__release)
+    tarname = "astyle_{0}_macos.tar".format(AS_RELEASE)
     call_7zip(dist_base, tarname)
     gzname = tarname + ".gz"
     call_7zip(dist_base, gzname)
@@ -127,7 +137,7 @@ def build_vms_distribution():
     print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
     print("*          Copying AStyle OpenVMS Distribution          *")
     print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
-    print("Building release", __release)
+    print("Building release", AS_RELEASE)
     dist_base = __base_dir + "/DistVMS"
     dist_astyle = dist_base + "/astyle"
     os.makedirs(dist_astyle)
@@ -157,7 +167,7 @@ def build_vms_distribution():
         shutil.copy(astyle_build_vms + file_in, dist_build_vms)
 
     # create zip
-    zipfile = "astyle_{0}_openvms.zip".format(__release)
+    zipfile = "astyle_{0}_openvms.zip".format(AS_RELEASE)
     call_7zip(dist_base, zipfile)
 
 # -----------------------------------------------------------------------------
@@ -170,11 +180,12 @@ def build_windows_distribution():
     print("*          Copying AStyle Windows Distribution          *")
     print("* * * * * * * * * * * * * * * * * * * * * * * * * * * * *")
     # the following variables may be modified
+    # do NOT use STATIC_XP, there is another script for that
     vsdir = libastyle.VS_RELEASE
-    vscfg= libastyle.STATIC
+    vscfg = libastyle.STATIC
 
     print("Compiling with", vsdir)
-    print("Building release", __release)
+    print("Building AStyle release", AS_RELEASE)
     if not vsdir >= "vs2013":
         libastyle.system_exit("Must compile with vs2013 or greater in libastyle: " + vsdir)
     dist_base = __base_dir + "/DistWindows"
@@ -187,11 +198,11 @@ def build_windows_distribution():
     dist_astyle_bin = dist_astyle + "/bin/"
     os.mkdir(dist_astyle_bin)
     astyle_build_directory = libastyle.get_astyle_build_directory(vscfg)
-    if vscfg ==  libastyle.DEBUG:
-        shutil.copy(astyle_build_directory + "/debug/AStyle.exe", dist_astyle_bin)
-    elif vscfg ==  libastyle.RELEASE:
+    if vscfg == libastyle.DEBUG:
+        shutil.copy(astyle_build_directory + "/debug/AStyled.exe", dist_astyle_bin)
+    elif vscfg == libastyle.RELEASE:
         shutil.copy(astyle_build_directory + "/bin/AStyle.exe", dist_astyle_bin)
-    elif vscfg ==  libastyle.STATIC:
+    elif vscfg == libastyle.STATIC:
         shutil.copy(astyle_build_directory + "/binstatic/AStyle.exe", dist_astyle_bin)
     else:
         libastyle.system_exit("Invalid compile configuration: " + vscfg)
@@ -210,13 +221,18 @@ def build_windows_distribution():
     os.mkdir(dist_doc)
     copy_astyle_doc(dist_doc, True)
 
+    # file directory
+    dist_file = dist_astyle + "/file/"
+    os.mkdir(dist_file)
+    copy_astyle_file(dist_file, True)
+
     # src directory
     dist_src = dist_astyle + "/src/"
     os.mkdir(dist_src)
     copy_astyle_src(dist_src, True)
 
     # create zip
-    zipfile = "AStyle_{0}_windows.zip".format(__release)
+    zipfile = "AStyle_{0}_windows.zip".format(AS_RELEASE)
     call_7zip(dist_base, zipfile)
 
 # -----------------------------------------------------------------------------
@@ -285,10 +301,10 @@ def copy_astyle_doc(dist_doc, to_dos=False):
         sep = filepath.rfind(os.sep)
         filename = filepath[sep + 1:]
         if (filename == "astyle.html"
-        or filename == "install.html"
-        or filename == "news.html"
-        or filename == "notes.html"
-        or filename == "styles.css"):
+                or filename == "install.html"
+                or filename == "news.html"
+                or filename == "notes.html"
+                or filename == "styles.css"):
             shutil.copy(filepath, dist_doc)
             print("    " + filename)
         else:
@@ -296,7 +312,7 @@ def copy_astyle_doc(dist_doc, to_dos=False):
     convert_line_ends(dist_doc, to_dos)
     # verify copy - had a problem with bad filenames
     distfiles = (glob.glob(dist_doc + "/*.html")
-                    + glob.glob(dist_doc + "/*.css"))
+                 + glob.glob(dist_doc + "/*.css"))
     if len(distfiles) != len(docfiles) - deleted:
         libastyle.system_exit("Error copying doc: " + str(len(distfiles)))
     # change file permissions
@@ -304,6 +320,35 @@ def copy_astyle_doc(dist_doc, to_dos=False):
         # read/write by the owner and read only by everyone else (-rw-r--r--)
         mode = (stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
         os.chmod(srcfile, mode)
+
+# -----------------------------------------------------------------------------
+
+def copy_astyle_file(dist_file, to_dos=False):
+    """Copy astyle src directory to a distribution directory.
+    """
+    print("copying file")
+    deleted = 0
+    filefiles = glob.glob(__astyle_dir + "/file/*")
+    filefiles.sort()
+    for filepath in filefiles:
+        sep = filepath.rfind(os.sep)
+        filename = filepath[sep + 1:]
+        unused, ext = os.path.splitext(filename)
+        if ext != ".yaml":
+            shutil.copy(filepath, dist_file)
+            print("    " + filename)
+        else:
+            deleted += 1
+    convert_line_ends(dist_file, to_dos)
+    # verify copy - had a problem with bad filenames
+    distfiles = glob.glob(dist_file + "/*")
+    if len(distfiles) != len(filefiles) - deleted:
+        libastyle.system_exit("Error copying file: " + str(len(distfiles)))
+    # change file permissions
+    for filefile in distfiles:
+        # read/write by the owner and read only by everyone else (-rw-r--r--)
+        mode = (stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
+        os.chmod(filefile, mode)
 
 # -----------------------------------------------------------------------------
 
@@ -318,7 +363,7 @@ def copy_astyle_src(dist_src, to_dos=False):
     convert_line_ends(dist_src, to_dos)
     # verify copy - had a problem with bad filenames
     distfiles = (glob.glob(dist_src + "/*.cpp")
-                    + glob.glob(dist_src + "/*.h"))
+                 + glob.glob(dist_src + "/*.h"))
     if len(distfiles) != len(srcfiles):
         libastyle.system_exit("Error copying src: " + str(len(distfiles)))
     # change file permissions
@@ -340,7 +385,7 @@ def copy_astyle_top(dist_top, to_dos=False):
         sep = filepath.rfind(os.sep)
         filename = filepath[sep + 1:]
         if (filename == "LICENSE.txt"
-        or filename == "README.txt"):
+                or filename == "README.txt"):
             shutil.copy(filepath, dist_top)
             print("    " + filename)
         else:
@@ -436,11 +481,13 @@ def copy_windows_build_directories(dist_build):
     # get a list of build/vs20xx directories
     build_dir_list = os.listdir(buildfiles)
     build_dir_list.sort()
-    for i in range(len(build_dir_list)):
-        if build_dir_list[i][:4] == "vs20":
+    for unused, build_dir in enumerate(build_dir_list):
+         if (build_dir.startswith("vs20")
+            and not build_dir.endswith("-clang")):
+            print("    " + build_dir)
 
             # copy solution files
-            vsdir = '/' + build_dir_list[i] + '/'
+            vsdir = '/' + build_dir + '/'
             dist_astyle_vs20xx = dist_build + vsdir
             os.mkdir(dist_astyle_vs20xx)
             slnfiles = glob.glob(buildfiles + vsdir + "*.sln")
@@ -449,21 +496,26 @@ def copy_windows_build_directories(dist_build):
 
             # build project directories
             for projdir in ("/AStyle/",
-                            "/AStyleDll/",
-                            "/AStyleJava/",
-                            "/AStyleLib/"):
+                            "/AStyle Dll/",
+                            "/AStyle Java/",
+                            "/AStyle Lib/"):
                 dist_astyle_proj = dist_astyle_vs20xx[:-1] + projdir
                 os.mkdir(dist_astyle_proj)
 
                 # copy project files
                 projfiles = glob.glob(buildfiles + vsdir[:-1] + projdir + "*.*proj")
+                files_copied = 0
                 for proj in projfiles:
+                    files_copied += 1
                     shutil.copy(proj, dist_astyle_proj)
                 if vsdir[1:-1] >= "vs2010":
                     filtfiles = glob.glob(buildfiles + vsdir[:-1] + projdir + "*.*.filters")
                     for filter_in in filtfiles:
+                        files_copied += 1
                         shutil.copy(filter_in, dist_astyle_proj)
-            print("    " + vsdir[1:-1])
+                # verify number of files copied
+                if files_copied != 2 and files_copied != 1:
+                    libastyle.system_exit("Error in number of build files copied: " + str(files_copied))
 
 # -----------------------------------------------------------------------------
 
@@ -473,7 +525,7 @@ def remove_dist_directories():
     dirs = glob.glob(__base_dir + "/[Dd]ist*/")
     dirs.sort()
     for directory in dirs:
-        if "Wx" in directory or "wx" in directory:
+        if "wx" in directory.lower():
             continue
         directory = directory.replace('\\', '/')
         print("remove " + directory)

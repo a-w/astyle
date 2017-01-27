@@ -16,13 +16,14 @@
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
 					<Add option="-g" />
+					<Add option="-std=c++11" />
 					<Add option="-Wno-unused-local-typedefs" />
 					<Add option="-DASTYLE_LIB" />
 					<Add directory="../../srclib" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
-					<Add directory="../../../gmock/include" />
+					<Add directory="../../../googletest/include" />
+					<Add directory="../../../googlemock/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-Wl,--enable-auto-import" />
@@ -38,14 +39,15 @@
 				<Compiler>
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-Wno-unused-local-typedefs" />
 					<Add option="-DASTYLE_LIB" />
 					<Add option="-DNDEBUG" />
 					<Add directory="../../srclib" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
-					<Add directory="../../../gmock/include" />
+					<Add directory="../../../googletest/include" />
+					<Add directory="../../../googlemock/include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -62,6 +64,9 @@
 				<Compiler>
 					<Add option="-Wextra" />
 					<Add option="-Wall" />
+					<Add option="-pg" />
+					<Add option="-g" />
+					<Add option="-std=c++11" />
 					<Add option="-Wno-unused-local-typedefs" />
 					<Add option="-fprofile-arcs" />
 					<Add option="-ftest-coverage" />
@@ -69,12 +74,13 @@
 					<Add directory="../../srclib" />
 					<Add directory="../../srcx" />
 					<Add directory="../../../AStyle/src" />
-					<Add directory="../../../gmock/gtest/include" />
-					<Add directory="../../../gmock/include" />
+					<Add directory="../../../googletest/include" />
+					<Add directory="../../../googlemock/include" />
 				</Compiler>
 				<Linker>
+					<Add option="-pg -lgmon" />
 					<Add option="-Wl,--enable-auto-import" />
-					<Add library="gmock" />
+					<Add library="gmockd" />
 					<Add library="gcov" />
 					<Add directory="bin" />
 				</Linker>

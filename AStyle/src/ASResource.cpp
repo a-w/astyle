@@ -1,6 +1,6 @@
 // ASResource.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 //-----------------------------------------------------------------------------
@@ -16,49 +16,71 @@
 
 namespace astyle {
 //
-const string ASResource::AS_IF = string("if");
-const string ASResource::AS_ELSE = string("else");
-const string ASResource::AS_FOR = string("for");
-const string ASResource::AS_DO = string("do");
-const string ASResource::AS_WHILE = string("while");
-const string ASResource::AS_SWITCH = string("switch");
-const string ASResource::AS_CASE = string("case");
-const string ASResource::AS_DEFAULT = string("default");
-const string ASResource::AS_CLASS = string("class");
-const string ASResource::AS_VOLATILE = string("volatile");
-const string ASResource::AS_INTERRUPT = string("interrupt");
-const string ASResource::AS_NOEXCEPT = string("noexcept");
-const string ASResource::AS_AUTORELEASEPOOL = string("autoreleasepool");
-const string ASResource::AS_STRUCT = string("struct");
-const string ASResource::AS_UNION = string("union");
-const string ASResource::AS_INTERFACE = string("interface");
-const string ASResource::AS_NAMESPACE = string("namespace");
-const string ASResource::AS_END = string("end");
-const string ASResource::AS_SELECTOR = string("selector");
-const string ASResource::AS_EXTERN = string("extern");
-const string ASResource::AS_ENUM = string("enum");
-const string ASResource::AS_PUBLIC = string("public");
-const string ASResource::AS_PROTECTED = string("protected");
-const string ASResource::AS_PRIVATE = string("private");
-const string ASResource::AS_STATIC = string("static");
-const string ASResource::AS_SYNCHRONIZED = string("synchronized");
-const string ASResource::AS_OPERATOR = string("operator");
-const string ASResource::AS_TEMPLATE = string("template");
-const string ASResource::AS_TRY = string("try");
-const string ASResource::AS_CATCH = string("catch");
-const string ASResource::AS_THROW = string("throw");
-const string ASResource::AS_FINALLY = string("finally");
-const string ASResource::AS_USING = string("using");
-const string ASResource::_AS_TRY = string("__try");
-const string ASResource::_AS_FINALLY = string("__finally");
 const string ASResource::_AS_EXCEPT = string("__except");
-const string ASResource::AS_THROWS = string("throws");
+const string ASResource::_AS_FINALLY = string("__finally");
+const string ASResource::_AS_TRY = string("__try");
+const string ASResource::AS_ADD = string("add");
+const string ASResource::AS_AUTO = string("auto");
+const string ASResource::AS_AUTORELEASEPOOL = string("autoreleasepool");
+const string ASResource::AS_CASE = string("case");
+const string ASResource::AS_CATCH = string("catch");
+const string ASResource::AS_CLASS = string("class");
 const string ASResource::AS_CONST = string("const");
-const string ASResource::AS_SEALED = string("sealed");
-const string ASResource::AS_OVERRIDE = string("override");
-const string ASResource::AS_WHERE = string("where");
+const string ASResource::AS_CONST_CAST = string("const_cast");
+const string ASResource::AS_DEFAULT = string("default");
+const string ASResource::AS_DELEGATE = string("delegate");
+const string ASResource::AS_DELETE = string("delete");
+const string ASResource::AS_DO = string("do");
+const string ASResource::AS_DYNAMIC_CAST = string("dynamic_cast");
+const string ASResource::AS_ELSE = string("else");
+const string ASResource::AS_END = string("end");
+const string ASResource::AS_ENUM = string("enum");
+const string ASResource::AS_EXTERN = string("extern");
+const string ASResource::AS_FINALLY = string("finally");
+const string ASResource::AS_FIXED = string("fixed");
+const string ASResource::AS_FOR = string("for");
+const string ASResource::AS_FOREACH = string("foreach");
+const string ASResource::AS_FOREVER = string("forever");
+const string ASResource::AS_GET = string("get");
+const string ASResource::AS_IF = string("if");
+const string ASResource::AS_INTERFACE = string("interface");
+const string ASResource::AS_INTERRUPT = string("interrupt");
 const string ASResource::AS_LET = string("let");
+const string ASResource::AS_LOCK = string("lock");
+const string ASResource::AS_MODULE = string("module");	// CORBA IDL module definition
+const string ASResource::AS_NAMESPACE = string("namespace");
 const string ASResource::AS_NEW = string("new");
+const string ASResource::AS_NOEXCEPT = string("noexcept");
+const string ASResource::AS_NS_DURING = string("NS_DURING");
+const string ASResource::AS_NS_HANDLER = string("NS_HANDLER");
+const string ASResource::AS_OPERATOR = string("operator");
+const string ASResource::AS_OVERRIDE = string("override");
+const string ASResource::AS_PRIVATE = string("private");
+const string ASResource::AS_PROTECTED = string("protected");
+const string ASResource::AS_PUBLIC = string("public");
+const string ASResource::AS_QFOREACH = string("Q_FOREACH");
+const string ASResource::AS_QFOREVER = string("Q_FOREVER");
+const string ASResource::AS_REINTERPRET_CAST = string("reinterpret_cast");
+const string ASResource::AS_REMOVE = string("remove");
+const string ASResource::AS_SEALED = string("sealed");
+const string ASResource::AS_SELECTOR = string("selector");
+const string ASResource::AS_SET = string("set");
+const string ASResource::AS_STATIC = string("static");
+const string ASResource::AS_STATIC_CAST = string("static_cast");
+const string ASResource::AS_STRUCT = string("struct");
+const string ASResource::AS_SWITCH = string("switch");
+const string ASResource::AS_SYNCHRONIZED = string("synchronized");
+const string ASResource::AS_TEMPLATE = string("template");
+const string ASResource::AS_THROW = string("throw");
+const string ASResource::AS_THROWS = string("throws");
+const string ASResource::AS_TRY = string("try");
+const string ASResource::AS_UNCHECKED = string("unchecked");
+const string ASResource::AS_UNION = string("union");
+const string ASResource::AS_UNSAFE = string("unsafe");
+const string ASResource::AS_USING = string("using");
+const string ASResource::AS_VOLATILE = string("volatile");
+const string ASResource::AS_WHERE = string("where");
+const string ASResource::AS_WHILE = string("while");
 
 const string ASResource::AS_ASM = string("asm");
 const string ASResource::AS__ASM__ = string("__asm__");
@@ -71,8 +93,8 @@ const string ASResource::AS_BAR_IF = string("#if");
 const string ASResource::AS_BAR_EL = string("#el");
 const string ASResource::AS_BAR_ENDIF = string("#endif");
 
-const string ASResource::AS_OPEN_BRACKET = string("{");
-const string ASResource::AS_CLOSE_BRACKET = string("}");
+const string ASResource::AS_OPEN_BRACE = string("{");
+const string ASResource::AS_CLOSE_BRACE = string("}");
 const string ASResource::AS_OPEN_LINE_COMMENT = string("//");
 const string ASResource::AS_OPEN_COMMENT = string("/*");
 const string ASResource::AS_CLOSE_COMMENT = string("*/");
@@ -131,28 +153,6 @@ const string ASResource::AS_QUESTION = string("?");
 const string ASResource::AS_COLON = string(":");
 const string ASResource::AS_COMMA = string(",");
 const string ASResource::AS_SEMICOLON = string(";");
-
-const string ASResource::AS_QFOREACH = string("Q_FOREACH");
-const string ASResource::AS_QFOREVER = string("Q_FOREVER");
-const string ASResource::AS_FOREVER = string("forever");
-const string ASResource::AS_FOREACH = string("foreach");
-const string ASResource::AS_LOCK = string("lock");
-const string ASResource::AS_UNSAFE = string("unsafe");
-const string ASResource::AS_FIXED = string("fixed");
-const string ASResource::AS_GET = string("get");
-const string ASResource::AS_SET = string("set");
-const string ASResource::AS_ADD = string("add");
-const string ASResource::AS_REMOVE = string("remove");
-const string ASResource::AS_DELEGATE = string("delegate");
-const string ASResource::AS_UNCHECKED = string("unchecked");
-
-const string ASResource::AS_CONST_CAST = string("const_cast");
-const string ASResource::AS_DYNAMIC_CAST = string("dynamic_cast");
-const string ASResource::AS_REINTERPRET_CAST = string("reinterpret_cast");
-const string ASResource::AS_STATIC_CAST = string("static_cast");
-
-const string ASResource::AS_NS_DURING = string("NS_DURING");
-const string ASResource::AS_NS_HANDLER = string("NS_HANDLER");
 
 /**
  * Sort comparison function.
@@ -305,7 +305,7 @@ void ASResource::buildIndentableMacros(vector<const pair<const string, const str
 {
 	typedef pair<const string, const string> macro_pair;
 
-	// the pairs must be retained in memory
+	// the pairs must be retained in memory because of pair pointers
 	static const macro_pair macros[] =
 	{
 		// wxWidgets
@@ -476,6 +476,8 @@ void ASResource::buildPreBlockStatements(vector<const string*>* preBlockStatemen
 		preBlockStatements->push_back(&AS_STRUCT);
 		preBlockStatements->push_back(&AS_UNION);
 		preBlockStatements->push_back(&AS_NAMESPACE);
+		preBlockStatements->push_back(&AS_MODULE);     // for CORBA IDL
+		preBlockStatements->push_back(&AS_INTERFACE);  // for CORBA IDL
 	}
 	if (fileType == JAVA_TYPE)
 	{
@@ -498,7 +500,7 @@ void ASResource::buildPreBlockStatements(vector<const string*>* preBlockStatemen
  * NOTE: Cannot be both a header and a preCommandHeader.
  *
  * A preCommandHeader is in a function definition between
- * the closing paren and the opening bracket.
+ * the closing paren and the opening brace.
  * e.g. in "void foo() const {}", "const" is a preCommandHeader.
  */
 void ASResource::buildPreCommandHeaders(vector<const string*>* preCommandHeaders, int fileType)
@@ -530,7 +532,7 @@ void ASResource::buildPreCommandHeaders(vector<const string*>* preCommandHeaders
 /**
  * Build the vector of pre-definition headers.
  * Used by ONLY ASFormatter.cpp
- * NOTE: Do NOT add 'enum' here. It is an array type bracket.
+ * NOTE: Do NOT add 'enum' here. It is an array type brace.
  * NOTE: Do NOT add 'extern' here. Do not want an extra indent.
  *
  * @param preDefinitionHeaders      a reference to the vector to be built.
@@ -543,6 +545,8 @@ void ASResource::buildPreDefinitionHeaders(vector<const string*>* preDefinitionH
 		preDefinitionHeaders->push_back(&AS_STRUCT);
 		preDefinitionHeaders->push_back(&AS_UNION);
 		preDefinitionHeaders->push_back(&AS_NAMESPACE);
+		preDefinitionHeaders->push_back(&AS_MODULE);     // for CORBA IDL
+		preDefinitionHeaders->push_back(&AS_INTERFACE);  // for CORBA IDL
 	}
 	if (fileType == JAVA_TYPE)
 	{
@@ -578,7 +582,7 @@ bool ASBase::findKeyword(const string& line, int i, const string& keyword) const
 	if (isLegalNameChar(line[wordEnd]))
 		return false;
 	// is not a keyword if part of a definition
-	const char peekChar = peekNextChar(line, wordEnd - 1);
+	const char peekChar = peekNextChar(line, (int)wordEnd - 1);
 	if (peekChar == ',' || peekChar == ')')
 		return false;
 	return true;
@@ -602,8 +606,10 @@ string ASBase::getCurrentWord(const string& line, size_t index) const
 // check if a specific character can be used in a legal variable/method/class name
 bool ASBase::isLegalNameChar(char ch) const
 {
-	if (isWhiteSpace(ch)) return false;
-	if ((unsigned) ch > 127) return false;
+	if (isWhiteSpace(ch))
+		return false;
+	if ((unsigned char) ch > 127)
+		return false;
 	return (isalnum((unsigned char) ch)
 	        || ch == '.' || ch == '_'
 	        || (isJavaStyle() && ch == '$')
@@ -615,7 +621,8 @@ bool ASBase::isCharPotentialHeader(const string& line, size_t i) const
 {
 	assert(!isWhiteSpace(line[i]));
 	char prevCh = ' ';
-	if (i > 0) prevCh = line[i - 1];
+	if (i > 0)
+		prevCh = line[i - 1];
 	if (!isLegalNameChar(prevCh) && isLegalNameChar(line[i]))
 		return true;
 	return false;
@@ -625,7 +632,8 @@ bool ASBase::isCharPotentialHeader(const string& line, size_t i) const
 bool ASBase::isCharPotentialOperator(char ch) const
 {
 	assert(!isWhiteSpace(ch));
-	if ((unsigned) ch > 127) return false;
+	if ((unsigned) ch > 127)
+		return false;
 	return (ispunct((unsigned char) ch)
 	        && ch != '{' && ch != '}'
 	        && ch != '(' && ch != ')'

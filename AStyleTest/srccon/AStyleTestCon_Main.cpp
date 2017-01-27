@@ -1,6 +1,6 @@
 // AStyleTestCon_Main.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 // AStyleTestCon tests the ASConsole class only. This class is used only in
@@ -89,11 +89,11 @@ int main(int argc, char** argv)
 	bool noClose = false;
 	for (int i = 1; i < argc; i++)
 	{
-		if (strcmp(argv[i], "--terse_output") == 0 )
+		if (strcmp(argv[i], "--terse_output") == 0)
 			useTerseOutput = true;
-		else if (strcmp(argv[i], "--no_close") == 0 )
+		else if (strcmp(argv[i], "--no_close") == 0)
 			noClose = true;
-		else if (strcmp(argv[i], "--gtest_color=no") == 0 )
+		else if (strcmp(argv[i], "--gtest_color=no") == 0)
 			useColor = false;
 	}
 	// do this after parsing the command line but before changing printer
@@ -118,43 +118,26 @@ int main(int argc, char** argv)
 	// example 9 will not work here because of user modifications.
 	if (g_isI18nTest)
 		// Change the following value to the number of tests (within 20).
-		TersePrinter::PrintTestTotals(36, __FILE__, __LINE__);
+		TersePrinter::PrintTestTotals(40, __FILE__, __LINE__);
 	else
 		// Change the following value to the number of tests (within 20).
-		TersePrinter::PrintTestTotals(97, __FILE__, __LINE__);
+		TersePrinter::PrintTestTotals(120, __FILE__, __LINE__);
 	if (g_isI18nTest)
 		printI18nMessage();
-#ifdef __WIN32
+#ifdef _WIN32
 	printf("%c", '\n');
 #endif
 	// end of unit testing
 	removeTestDirectory(getTestDirectory());
 	if (noClose)			// command line option
 		systemPause();
+
 	return retval;
 }
 
 //----------------------------------------------------------------------------
 // support functions
 //----------------------------------------------------------------------------
-
-//char** buildArgv(const vector<string>& argIn)
-//// build an array of pointers to be used as argv variable in function calls
-//// the calling program must delete[] argv
-//// argc will equal (argIn.size() + 1)
-//{
-//	// build argv array of pointers for input
-//	int argc = argIn.size() + 1;
-//
-//	char** argv = new char* [sizeof(char*) * argc];
-//	argv[0] = (char*)"AStyleTestCon.exe";	// first value is the program name
-//	if (argIn.size() > 0)
-//		for (int i = 1; i < argc; i++)		// next are the options
-//			argv[i] = const_cast<char*>(argIn[i-1].c_str());
-////	for (int i = 0; i < argc; i++)
-////		cout << argv[i] << endl;
-//	return argv;
-//}
 
 #ifdef _WIN32
 void cleanTestDirectory(const string& directoryMB)
@@ -167,11 +150,11 @@ void cleanTestDirectory(const string& directoryMB)
 void cleanTestDirectory(const wstring& directory)
 // WINDOWS remove files and sub directories from the test directory
 {
-	WIN32_FIND_DATAW FindFileData;
+	WIN32_FIND_DATAW findFileData;
 	// Find the first file in the directory
 	// Find will get at least "." and "..".
 	wstring firstFile = directory + L"\\*";
-	HANDLE hFind = ::FindFirstFileW(firstFile.c_str(), &FindFileData);
+	HANDLE hFind = ::FindFirstFileW(firstFile.c_str(), &findFileData);
 	if (hFind == INVALID_HANDLE_VALUE)
 	{
 		displayLastError();
@@ -181,13 +164,13 @@ void cleanTestDirectory(const wstring& directory)
 	do
 	{
 		// skip these
-		if (wcscmp(FindFileData.cFileName, L".") == 0
-		        ||  wcscmp(FindFileData.cFileName, L"..") == 0)
+		if (wcscmp(findFileData.cFileName, L".") == 0
+		        || wcscmp(findFileData.cFileName, L"..") == 0)
 			continue;
 		// clean and remove sub directories
-		if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+		if (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
-			wstring subDirectoryPath = directory + L"\\" + FindFileData.cFileName;
+			wstring subDirectoryPath = directory + L"\\" + findFileData.cFileName;
 			cleanTestDirectory(subDirectoryPath);
 			BOOL isRemoved = ::RemoveDirectoryW(subDirectoryPath.c_str());
 			if (!isRemoved)
@@ -195,7 +178,7 @@ void cleanTestDirectory(const wstring& directory)
 			continue;
 		}
 		// remove the file
-		wstring filePathName = directory + L"\\" + FindFileData.cFileName;
+		wstring filePathName = directory + L"\\" + findFileData.cFileName;
 		BOOL isRemoved = ::DeleteFileW(filePathName.c_str());
 		if (!isRemoved)
 		{
@@ -203,7 +186,7 @@ void cleanTestDirectory(const wstring& directory)
 			systemAbort(L"Cannot remove file for clean: " + filePathName);
 		}
 	}
-	while (::FindNextFileW(hFind, &FindFileData) != 0);
+	while (::FindNextFileW(hFind, &findFileData) != 0);
 	// check for processing error
 	FindClose(hFind);
 	DWORD dwError = GetLastError();
@@ -218,12 +201,12 @@ void displayLastError()
 	DWORD lastError = GetLastError();
 	FormatMessage(
 	    FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM,
-	    NULL,
+	    nullptr,
 	    lastError,
 	    MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),  // Default language
 	    (LPSTR) &msgBuf,
 	    0,
-	    NULL
+	    nullptr
 	);
 	// Display the string.
 	cout << "Error (" << lastError << ") " << msgBuf << endl;
@@ -245,7 +228,7 @@ void retryCreateDirectory(const string& directory)
 	for (size_t seconds = 1; seconds <= 5; seconds++)
 	{
 		sleep(1);
-		BOOL ok = ::CreateDirectory(directory.c_str(), NULL);
+		BOOL ok = ::CreateDirectory(directory.c_str(), nullptr);
 		if (ok || GetLastError() == ERROR_ALREADY_EXISTS)
 		{
 //			cout << "create retry: " << seconds << " seconds" << endl;
@@ -278,7 +261,7 @@ void sleep(int seconds)
 // WINDOWS sleep
 {
 	clock_t endwait;
-	endwait = clock_t (clock () + seconds * CLOCKS_PER_SEC);
+	endwait = clock_t(clock() + seconds * CLOCKS_PER_SEC);
 	while (clock() < endwait) {}
 }
 
@@ -305,7 +288,7 @@ void cleanTestDirectory(const string& directory)
 		ASTYLE_ABORT(string(strerror(errno))
 		             + "\nCannot open directory for clean: " + directory);
 	// remove files and sub directories
-	while ((entry = readdir(dp)) != NULL)
+	while ((entry = readdir(dp)) != nullptr)
 	{
 		// get file status
 		string entryFilepath = directory + '/' + entry->d_name;
@@ -332,21 +315,13 @@ void cleanTestDirectory(const string& directory)
 		if (S_ISREG(statbuf.st_mode))
 		{
 			string filePathName = directory + '/' + entry->d_name;
-			remove(filePathName.c_str());
-			if (errno)
-				ASTYLE_ABORT(string(strerror(errno))
-				             + "\nCannot remove file for clean: " + filePathName);
+			removeTestFile(filePathName);
 		}
 	}
 	closedir(dp);
 	if (errno)
 		ASTYLE_ABORT(string(strerror(errno))
 		             + "\nError processing directory for clean: " + directory);
-}
-
-void displayLastError()
-// LINUX does nothing, for Windows messages only
-{
 }
 
 void removeTestDirectory(const string& dirName)
@@ -362,17 +337,17 @@ wstring convertToWideChar(const string& mbStr)
 // convert multibyte to wchar_t using the currently assigned locale
 {
 	// get length of the output excluding the NULL and validate the parameters
-	size_t wcLen = mbstowcs(NULL, mbStr.c_str(), 0);
+	size_t wcLen = mbstowcs(nullptr, mbStr.c_str(), 0);
 	if (wcLen == string::npos)
 		ASTYLE_ABORT("Bad char in multi-byte string");
 	// convert the characters
-	wchar_t* wcStr = new(nothrow) wchar_t[wcLen + 1];
-	if (wcStr == NULL)
+	wchar_t* wcStr = new (nothrow) wchar_t[wcLen + 1];
+	if (wcStr == nullptr)
 		ASTYLE_ABORT("Bad memory alloc for wide character string");
 	mbstowcs(wcStr, mbStr.c_str(), wcLen + 1);
 	// return the string
 	wstring returnStr = wcStr;
-	delete [] wcStr;
+	delete[] wcStr;
 	return returnStr;
 }
 
@@ -391,7 +366,7 @@ void createTestDirectory(const string& dirPath)
 // create a test directory
 {
 #ifdef _WIN32
-	BOOL ok = ::CreateDirectory(dirPath.c_str(), NULL);
+	BOOL ok = ::CreateDirectory(dirPath.c_str(), nullptr);
 	if (!ok && GetLastError() != ERROR_ALREADY_EXISTS)
 		retryCreateDirectory(dirPath);
 #else
@@ -416,7 +391,9 @@ void createTestFile(const string& testFilePath, const char* testFileText, int si
 	ofstream fout(testFilePath.c_str(), ios::binary | ios::trunc);
 	if (!fout)
 	{
+#ifdef _WIN32
 		displayLastError();
+#endif
 		ASTYLE_ABORT("Cannot open output file: " + testFilePath);
 	}
 	if (size == 0)
@@ -430,7 +407,7 @@ void deleteConsoleGlobalObject()
 // deletes the g_console object
 {
 	delete g_console;
-	g_console = NULL;
+	g_console = nullptr;
 	// check global error display
 	if (_err != &cerr)
 		systemPause("_err ostream not replaced");
@@ -451,7 +428,7 @@ string getCurrentDirectory()
 		gotDirectory = false;
 #else
 	char* currdir = getenv("PWD");
-	if (currdir != NULL)
+	if (currdir != nullptr)
 		currentDirectory = currdir;
 	else
 		gotDirectory = false;
@@ -471,7 +448,7 @@ string getDefaultOptionsFilePath()
 	char* env = getenv("HOME");
 	char name[] = "/.astylerc";
 #endif
-	if (env == NULL)
+	if (env == nullptr)
 		systemAbort("Cannot get $HOME directory");
 	return string(env) + name;
 }
@@ -526,9 +503,9 @@ void removeTestFile(const string& testFileName)
 
 void renameDefaultOptionsFile()
 // Rename a default options file so test functions will not use or overwrite it.
-// Returns false if the file doesn't exist.
 {
 	string oldPath = getDefaultOptionsFilePath();
+	standardizeFileSeparators(oldPath);
 	string newPath = oldPath + ".orig";
 	int result = rename(oldPath.c_str(), newPath.c_str());
 	if (result && errno != ENOENT)
@@ -543,6 +520,7 @@ void restoreDefaultOptionsFile()
 // Restore the original default options file.
 {
 	string newPath = getDefaultOptionsFilePath();
+	standardizeFileSeparators(newPath);
 	string oldPath = newPath + ".orig";
 	int result = rename(oldPath.c_str(), newPath.c_str());
 	if (result && errno != ENOENT)
@@ -567,7 +545,7 @@ void setTestDirectory()
 #endif
 	// get replacement for environment variable
 	char* envPath = getenv(varName.c_str());
-	if (envPath == NULL)
+	if (envPath == nullptr)
 		ASTYLE_ABORT("Bad char in wide character string: " + envVar);
 	// replace the environment variable
 	size_t iEnv = g_testDirectory.find(envVar.c_str());
@@ -584,29 +562,22 @@ void setTestDirectory()
 		ASTYLE_ABORT("Primary directory does not exist: " + primaryDirectory);
 }
 
-//void setTestDirectoryX(char *argv)
-//// set the global variable *g_testDirectory
-//{
-//	assert(g_testDirectory == NULL);
-//	string testDirectory = argv;
-//
-//	// remove "build" directories
-//#ifdef _WIN32
-//	string buildDirectory = "\\build\\";
-//	string separator = "\\";
-//#else
-//	string buildDirectory = "/build/";
-//	string separator = "/";
-//#endif
-//	size_t i = testDirectory.rfind(buildDirectory);
-//	if (i == string::npos)
-//		ASTYLE_ABORT("Cannot extract test directory from: " + testDirectory);
-//	testDirectory = testDirectory.substr(0, i);
-//
-//	// create global *_projectDirectory
-//	testDirectory += separator + "ut-testcon";
-//	g_testDirectory = new string(testDirectory);
-//}
+void standardizeFileSeparators(string& path)
+// make sure file separators are correct type (Windows or Linux)
+{
+#ifdef _WIN32
+	char fileSeparator = '\\';     // Windows file separator
+#else
+	char fileSeparator = '/';      // Linux file separator
+#endif
+	for (size_t i = 0; i < path.length(); i++)
+	{
+		i = path.find_first_of("/\\", i);
+		if (i == string::npos)
+			break;
+		path[i] = fileSeparator;
+	}
+}
 
 void systemAbort(const string& message)
 {

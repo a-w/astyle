@@ -4,29 +4,19 @@
     with the current line numbers.
 """
 
-# To use the cppcheck naming.py extension, activate the "--dump"
-# option in the following run_cppcheck() function. This creates
-# the .dump files in the src folder. Then run naming.py in cmd.exe
-# with the following options:
-# ------------------------------------
-# "c:\program files\python 3.5\python"
-# "c:\program files\cppcheck\addons\naming.py"
-# --var="^([a-z]|AS_|_[a-z]|_AS_)" --function="^([a-z]|AS[A-Z])"
-# "c:\users\jimp\projects\astyle\src\asbeautifier.cpp.dump"
-# ------------------------------------
-
 # to disable the print statement and use the print() function (version 3 format)
 from __future__ import print_function
 
 import codecs
-import libastyle		# local directory
 import os
 import platform
 import subprocess
+# local libraries
+import libastyle
 
 # global variables ------------------------------------------------------------
 
-__expected_version = "1.60"
+__expected_version = "1.74"
 __src_dir = libastyle.get_astyle_directory() + "/src/"
 __py_dir = libastyle.get_astyletest_directory() + "/file-py/"
 __suppression_path = __py_dir + "cppcheck-suppress"
@@ -107,8 +97,8 @@ def process_astyle_main(astyle_main_list):
             continue
         if line.startswith("if (!isdigit((unsigned char)arg[1]))"):
             args_processed += 1
-            if args_processed == 2:
-                astyle_main_list.append("arrayIndexOutOfBounds:" + src_path + ":" + str(lines) + "\t// arg[1]\n")
+        if line.startswith("if (sizeof(utf16_t) != sizeCheck)"):
+             astyle_main_list.append("knownConditionTrueFalse:" + src_path + ":" + str(lines) + "\t\t// utf16_t sizeCheck\n")
         # unusedFunction warnings
         if "ASConsole::getExcludeHitsVector(" in line:
             astyle_main_list.append("unusedFunction:" + src_path + ":" + str(lines) + "\t\t\t// getExcludeHitsVector\n")
@@ -217,8 +207,6 @@ def process_beautifier(beautifier_list):
             beautifier_list.append("copyCtorPointerCopying:" + src_path + ":" + str(lines) + "\t// preCommandHeaders\n")
         if line.startswith("indentableHeaders = other.indentableHeaders"):
             beautifier_list.append("copyCtorPointerCopying:" + src_path + ":" + str(lines) + "\t// indentableHeaders\n")
-#        if "iter < container->end()" in line:
-#            beautifier_list.append("stlBoundaries:" + src_path + ":" + str(lines) + "\t\t\t// stlBoundaries\n")
         if line.startswith("char ch"):
             chars_processed += 1
             if chars_processed == 1 or chars_processed == 3:
@@ -256,17 +244,20 @@ def process_enhancer(enhancer_list):
 def process_file_suppressions(file_suppression_list):
     """ Generate suppressions for an entire file.
     """
+    file_suppression_list.append("// functionStatic is supressed for the entire project in the command line.\n")
+    file_suppression_list.append("// purgedConfiguration is supressed for the entire project in the command line.\n")
+    file_suppression_list.append("//\n")
     file_suppression_list.append("// duplInheritedMember\n")
     file_suppression_list.append("// These are duplicate variable names in the header classes.\n")
     file_suppression_list.append("// The way the classes are used they are not a problem.\n")
     file_suppression_list.append("duplInheritedMember:" + __src_dir + "astyle.h\n")
+    file_suppression_list.append("//\n")
     file_suppression_list.append("// uninitMemberVar\n")
     file_suppression_list.append("// These are actually initialized in the astyle 'init' functions.\n")
     file_suppression_list.append("// They are verified by other Python scripts.\n")
     file_suppression_list.append("uninitMemberVar:" + __src_dir + "ASBeautifier.cpp\n")
     file_suppression_list.append("uninitMemberVar:" + __src_dir + "ASEnhancer.cpp\n")
     file_suppression_list.append("uninitMemberVar:" + __src_dir + "ASFormatter.cpp\n")
-    file_suppression_list.append("uninitMemberVar:" + __src_dir + "astyle_main.cpp\n")      # from version 1.72
 
 # -----------------------------------------------------------------------------
 
@@ -297,16 +288,16 @@ def process_formatter(formatter_list):
             formatter_list.append("reademptycontainer:" + src_path + ":" + str(lines) + "\t\t// operators->empty\n")
         # assertWithSideEffect
         if (line.startswith("assert")
-        and "adjustChecksumIn" in line):			# 2 lines
+                and "adjustChecksumIn" in line):			# 2 lines
             formatter_list.append("assertWithSideEffect:" + src_path + ":" + str(lines) + "\t\t// assert\n")
         if (line.startswith("assert")
-        and "adjustChecksumOut" in line):
+                and "adjustChecksumOut" in line):
             formatter_list.append("assertWithSideEffect:" + src_path + ":" + str(lines) + "\t\t// assert\n")
         if (line.startswith("assert")
-        and "computeChecksumIn" in line):			# 2 lines
+                and "computeChecksumIn" in line):			# 2 lines
             formatter_list.append("assertWithSideEffect:" + src_path + ":" + str(lines) + "\t\t// assert\n")
         if (line.startswith("assert")
-        and "computeChecksumOut" in line):
+                and "computeChecksumOut" in line):
             formatter_list.append("assertWithSideEffect:" + src_path + ":" + str(lines) + "\t\t// assert\n")
         # unusedFunction warnings
         if "ASFormatter::getChecksumIn" in line:
@@ -404,6 +395,7 @@ def run_cppcheck():
     cppcheck.append("--inconclusive")
     cppcheck.append("--verbose")
     cppcheck.append("--suppress=functionStatic")
+    cppcheck.append("--suppress=purgedConfiguration")
     cppcheck.append("--suppressions-list=" + __suppression_path)
     cppcheck.append(__src_dir)
     # shell=True keeps the console window open, but will not display if run from an editor
@@ -430,7 +422,7 @@ def verify_cppcheck_version(exepath):
         version = version.decode()
     if version < __expected_version:
         print("Cppcheck version", version,
-                "is less than expected version", __expected_version, "\n")
+              "is less than expected version", __expected_version, "\n")
 
 # -----------------------------------------------------------------------------
 

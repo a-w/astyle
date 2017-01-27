@@ -1,6 +1,6 @@
 // AStyleTestLoc.cpp
 // Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
-// Licensed under the MIT license.
+// This code is licensed under the MIT License.
 // License.txt describes the conditions under which this software may be distributed.
 
 
@@ -1059,7 +1059,7 @@ struct TranslationF : public Test
 				// conversion should be OK since specifiers are ascii
 				string asciiSpecifier = asciiSpecifiers[j];
 				string translationSpecifier = language.convertToMultiByte(translationSpecifiers[j]);
-				ASSERT_EQ(asciiSpecifier, translationSpecifier)	<< "print specifiers value \"" << asciiPrt << "\"";
+				ASSERT_EQ(asciiSpecifier, translationSpecifier) << "print specifiers value \"" << asciiPrt << "\"";
 			}
 		}
 	}

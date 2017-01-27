@@ -1,3 +1,8 @@
+// AStyleTest.h
+// Copyright (c) 2016 by Jim Pattee <jimp03@email.com>.
+// This code is licensed under the MIT License.
+// License.txt describes the conditions under which this software may be distributed.
+
 #ifndef ASTYLE_TEST_H
 #define ASTYLE_TEST_H
 
@@ -7,10 +12,9 @@
 // NOTE: astyle.h is NOT included to prevent recompiling all of the
 // test source files when changes are made to the astyle.h header.
 
-#include <gtest/gtest.h>
+#include "gtest/gtest.h"
 #include <stdlib.h>
 #include <iostream>		// for cout
-#include <string.h>		// need both string and string.h for GCC
 #include <string>
 
 using namespace std;
@@ -53,7 +57,7 @@ extern fpASMain AStyleMain;		// defined in AStyleTest_Main
 #else
 // For linked shared library.
 extern "C" char* STDCALL AStyleMain(const char*, const char*, fpError, fpAlloc);
-extern "C" const char* STDCALL AStyleGetVersion (void);
+extern "C" const char* STDCALL AStyleGetVersion(void);
 #endif
 
 //-----------------------------------------------------------------------------
